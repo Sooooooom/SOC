@@ -1,0 +1,180 @@
+/* 공통 속성 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px;
+  font-family: "Roboto", "noto", sans-serif;
+}
+body {
+  font-size: 1.8rem;
+  /* font-family: "Noto Sans KR", sans-serif !important; */
+}
+a {
+  text-decoration: none;
+  /* color: white; */
+}
+body.profile a {
+  color: #333;
+}
+ul {
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+h1 {
+  color: #132332;
+  line-height: 1.1;
+}
+aside {
+  flex: none;
+  max-width: 415px;
+  width: 50%;
+}
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+/* Header */
+.header {
+  width: 100%;
+  background: #0c4b33;
+  height: 79px;
+}
+.container,
+.container-float {
+  max-width: 100%;
+  background: lime;
+  position: absolute;
+}
+/* 부모요소에게 after를 사용하여 float되어 있는 요소를 clear해줍니다 */
+.container-float::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+.logo {
+  margin: 0;
+  padding-left: 97px;
+  position: absolute;
+}
+.nav {
+  float: right;
+  margin: 0px;
+}
+
+/* MAIN CONTENT */
+body.profile .profile-section .category,
+body.map .profile-section .category,
+body.story .profile-section .category {
+  flex: 1 1 100%;
+  padding: 25px 24px 30px;
+  min-width: 100%;
+}
+body.profile h1.category,
+body.map h1.category,
+body.story h1.category {
+  position: relative;
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: center;
+}
+body.profile .category a {
+  border-bottom: 2px solid #333;
+  margin-top: -95px;
+  padding-top: 95px;
+  padding-bottom: 5px;
+}
+.start-content {
+  max-width: 100%;
+  height: 1240px;
+}
+.splash {
+  display: flex;
+  justify-content: center;
+}
+.splash.titles {
+  max-width: 100%;
+  height: 486.42px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.splash.stat {
+  max-width: 100%;
+  height: 107px;
+  align-items: center;
+  font-size: 8px;
+}
+.stat-item {
+  width: 210px;
+  height: 100%;
+}
+.splash-icon {
+  width: 100px;
+  height: 194.58px;
+}
+.scroll-btn {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.profile-toc-section {
+  width: 148.2px;
+  height: 95px;
+  margin: 10px;
+}
+.toc-dt {
+  font-size: 13px;
+}
+
+.prof-body {
+  padding: 60px 50px 25px;
+}
+.profile-section {
+  padding: 0 125px;
+  background: lightblue;
+}
+
+.topic {
+  flex: 1 1 100%;
+  margin: 0;
+  min-width: 100%;
+  padding: 0 25px 50px;
+}
+.content {
+  display: flex;
+}
+.viz {
+  flex: 1 1 auto;
+  margin-left: 50px;
+  max-height: 75vh;
+  min-height: 400px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.viz.mini {
+  margin-left: 0;
+  min-height: 200px;
+}
+.sub-source {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  display: block;
+}

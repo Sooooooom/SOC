@@ -1,0 +1,1707 @@
+<!-- extend from base layout -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="광명시 생활 SOC 불평등 분석">
+    <meta property="og:site_name" content="Data KOREA" />
+    <meta property="og:title" content="광명시 생활SOC" />
+    <meta property="og:type" content="article" />
+<!-- This is when main -->
+
+    <!-- Page title block -->
+    <title>광명시 생활 SOC | 빅데이터 분석과 활용</title>
+
+    <!-- Load CSS styles -->
+    <link type="text/css" rel="stylesheet" media="all" href="/static/css/site.css?v=67" />
+    <link type="text/css" rel="stylesheet" media="all" href="/static/css/font-awesome-4.3.0/css/font-awesome.min.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="/static/css/c3.min.css">
+    <link href="/static/css/mailform.css" rel="stylesheet">
+    <!-- 2019.11 renew-->
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/modules.css">
+    <link rel="stylesheet" href="/static/css/swiper.min.css">
+    <script src="/static/js/moment.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+    <script src="/static/js/swiper.min.js"></script>
+    <script src="/static/js/ui_pub.js"></script>
+    <script src="/static/js/cookies.js"></script>
+    <!-- -->
+
+    <!-- Load javascript files -->
+    <script src="/static/js/d3.v3.min.js?v=67"></script>
+    <script src="/static/js/d3-queue.min.js?v=67"></script>
+    <script src="/static/js/d3plus.min.js?v=67"></script>
+    <!-- <script src="/static/js/d3plus.js?v=67"></script> -->
+    <script src="/static/js/topojson.js?v=67"></script>
+    <!-- Load C3 -->
+    <script src="/static/js/c3.js"></script>
+    <script src="/static/js/d3.v3.min.js"></script>
+    <script src="/static/js/c3.min.js"></script>
+    <script src="/static/js/d3.min.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        function getHref(){
+          return window.location.href;
+        }
+
+        var location_datakorea = window.location.hostname;
+
+        function getLocale() {
+            //설정된 언어값은 navigator 객체에서 확인이 가능. 이때 language 를 사용하면 현재 설정된 값을 반환.
+            if ( navigator ){
+                if ( navigator.language ) { return navigator.language;
+                }else if ( navigator.browserLanguage ) { return navigator.browserLanguage;
+                }else if ( navigator.systemLanguage ) { return navigator.systemLanguage;
+                }else if ( navigator.userLanguage ) { return navigator.userLanguage; }
+            }
+         }
+         function getCurrentTime() {
+
+            var today = moment();
+
+            var h = today.format('HH');
+            var m = today.format('mm');
+            var s = today.format('ss');
+
+            var dd = today.format('DD');
+            var mm = today.format('MM')
+            var yyyy = today.format('YYYY');
+
+            today_date = yyyy+'-'+mm+'-'+dd;
+
+            $('.time').html(h+":"+m+":"+s);
+            $('.day').html("<span>Korea Time</span>"+today_date);
+         }
+         $(function() {
+            getCurrentTime();
+
+            setInterval(getCurrentTime,1000);
+         });
+    </script>
+
+    <script type="text/javascript" src="/static/js/site.js?cf9ff7e7?v=67"></script>
+
+    <!-- <script>
+
+      var cartLimit = 5,
+          compare = false,
+          resizeFunctions = [],
+          resizeInstantFunctions = [],
+          scrollFunctions = [],
+          cache_version = "67",
+          api = "http://datakorea.datastore.or.kr:5000",
+          colmap = {"avgSalary": {"SALA": ["0~50", "0-500K"], "SALB": ["51~100", "510K-1M"], "SALC": ["101~150", "1.01-1.5M"], "SALD": ["151~200", "1.51-2M"], "SALE": ["201~250", "2.01-2.5M"], "SALF": ["251~300", "2.51-3M"], "SALG": ["301+", "3.01M+"], "SALH": ["500+", "5M+"], "SALI": ["\uccab\uc9c1\uc7a5\uc784\uae08(\uc6d4) \ud3c9\uade0\uac12", "First Work Wage(month) - Average"]}},
+          collectionyears = {"severe_housing_problems": {"2015": "2007-2011", "2016": "2008-2012", "2017": "2009-2013"}},
+          dictionary = {"degree_salary_value": ["\ube44\uc728(%)", "Share(%)"], "degree_field_value": ["\ube44\uc728(%)", "Share(%)"], "degree_sexs_value": ["\ub0a8\ub140\uc131\ube44(%)", "Gender Ratio(%)"], "degree_employ_value": ["\ucde8\uc5c5\ub960(%)", "Employment Rate(%)"], "degree_satis_value": ["\ube44\uc728(%)", "Share(%)"], "degree_after_value": ["\ube44\uc728(%)", "Share(%)"], "degree_appli_value": ["\uc778\uc6d0 \uc218(\uba85)", "Number of People(persons)"], "degree": ["\uc804\uacf5\uba85", "Major Name"], "avg_wage_grd": ["\uc6d4\ud3c9\uade0 \uc784\uae08\uad6c\uac04 \ube44\uc911", "Average monthly wage portion"], "wage": ["\uc784\uae08", "Wage"], "status_grd": ["\uc878\uc5c5 \ud6c4 \uc0c1\ud669", "Situation after Graduation"], "Gender": ["\uc131\ubcc4", "Gender"], "status_emp": ["\uccab \uc9c1\uc7a5 \ub9cc\uc871\ub3c4", "First job satisfaction"], "satis": ["\ub9cc\uc871\ub3c4", "Satisfaction"], "applicant_enroll": ["\uc9c0\uc6d0\uc790 \ub300\ube44 \uc785\ud559\uc790", "Admission to Applicants"], "enroll": ["\uc785\ud559\uc790", "Enrollee"], "people_sum": ["\uc778\uc6d0\uc218", "People"], "Share": ["\ube44\uc728", "Share(%)"], "deg_chart_type": ["\uc720\ud615", "Type"], "deg_chart_data": ["\uac12", "Value"], "employment_rate": ["\ucde8\uc5c5 \ud604\ud669(%)", "Employment Status(%)"], "appli": ["\uc9c0\uc6d0\uc790(\uba85)", "Applicant(persons)"], "after": ["\uc878\uc5c5 \ud6c4 \uc9c4\ub85c", "Career after graduation"], "deg_area_sum": ["\uac1c\uc124\ub41c \ub300\ud559 \uc218", "The Number of Universities are being offered"], "salary": ["\uc6d4 \ud3c9\uade0 \uc784\uae08 \uad6c\uac04", "Monthly wage interval"], "avg_salary": ["\uc6d4 \ud3c9\uade0 \uc784\uae08", "Monthly Wage"], "field": ["\uc9c1\uc5c5 \ubd84\uc57c", "Fields of Work"], "emp_years": ["\uadfc\uc18d \ub144\uc218(\ub2e8\uc704: \ub144)", "Years of Service(unit: year)"], "year": ["\uc5f0\ub3c4", "Years"], "TOPPAY": ["\uc6d4\uae09\uc5ec\uc561(\ucc9c\uc6d0)", "Monthly Wage Amount(1,000 Won)"], "geo": ["\uc9c0\uc5ed", "Area"], "DD_10": ["\uc6d4 \uc784\uae08\ucd1d\uc561(\uc6d0)", "Monthly Total Wage(Won)"], "DD_1": ["\uc6d4 \uadfc\ub85c\uc77c\uc218(\uc77c)", "Monthly Working Days(day)"], "MD_13": ["\uc0c1\uc6a9\uc6d4\uae09\uc5ec\uc561(\uc6d0)", "Commercially Available Monthly Wage Amount(Won)"], "ages_grade": ["\uadfc\ub85c\uc790 \uc5f0\ub839(\uc138)", "Workers Age(age)"], "job_ages_grade": ["\uadfc\ub85c\uc790 \uc5f0\ub839(\uc138)", "Workers Age(age)"], "job": ["\uc9c1\uc5c5", "Job"], "job_sub": ["\uc9c1\uc885", "Job recruit"], "WORKERCNT": ["\uadfc\ub85c\uc790 \uc218(\uba85)", "The Number of Workers(persons)"], "industry": ["\uc0b0\uc5c5", "Industry"], "MF_1": ["\uc885\uc0ac\uc790 \uc804\uccb4(\uba85)", "All Workers(persons)"], "MF_11": ["\uc804\uccb4 \ucc44\uc6a9 \uc218(\uba85)", "Total Number of Recruitment(persons)"], "EMP_DD_1": ["\uc0b0\uc5c5 \uae30\uc900 \ud604\uc7ac \uc778\uc6d0(\uba85)", "Present Personnel(persons)"], "EMP_DD_2": ["\uc0b0\uc5c5 \uae30\uc900 \uad6c\uc778\uc778\uc6d0(\uba85)", "Number of Job Offer(persons)"], "EMP_DD_3": ["\uc0b0\uc5c5 \uae30\uc900 \ucc44\uc6a9\uc778\uc6d0(\uba85)", "Recruitment Intake(persons)"], "EMP_DD_4": ["\uc0b0\uc5c5 \uae30\uc900 \ubbf8\ucda9\uc6d0 \uc778\uc6d0(\uba85)", "People are not filled(persons)"], "EMP_DD_5": ["\uc0b0\uc5c5 \uae30\uc900 \ubd80\uc871\uc778\uc6d0(\uba85)", "Lack of People(persons)"], "EMP_DD_6": ["\uc0b0\uc5c5 \uae30\uc900 \ubd80\uc871\ub960(%)", "Shortage(%)"], "EMP_DD_7": ["\uc0b0\uc5c5 \uae30\uc900 \ucc44\uc6a9\uacc4\ud68d \uc778\uc6d0(\uba85)", "Total Recruitment(persons)"], "EMP_DD_TTL": ["\uc0b0\uc5c5 \uae30\uc900 \uc778\uc6d0(\uba85)", "Industry Standard(persons)"], "recruit_rate": ["\ucc44\uc6a9\uacc4\ud68d\ub960(\ud604 \uadfc\ub85c\uc790 \uc778\uc6d0 \ub300\ube44)", "Rate of Recruitment Plans(Person compared with current worker)"], "EMP_TYPE": ["\uace0\uc6a9 \uc720\ud615", "Employment Type"], "emp_type": ["\uace0\uc6a9 \uc720\ud615", "Employment Type"], "JOB_DD_7": ["\uc9c1\uc885 \uae30\uc900 \ucc44\uc6a9\uacc4\ud68d \uc778\uc6d0(\uba85)", "Total Recruitment(persons)"], "JOB_DD_6": ["\uc9c1\uc885 \uae30\uc900 \ubd80\uc871\ub960(%)", "Shortage(%)"], "JOB_DD_3": ["\uc9c1\uc885 \uae30\uc900 \ucc44\uc6a9\uc778\uc6d0(\uba85)", "Recruitment Intake(persons)"], "JOB_DD_5": ["\uc9c1\uc885 \uae30\uc900 \ubd80\uc871\uc778\uc6d0(\uba85)", "Lack of People(persons)"], "job_type": ["\uace0\uc6a9 \uc720\ud615", "Employment Type"], "current_income": ["\uacbd\uc0c1\uc18c\ub4dd(\uc6d0)", "Income (Won)"], "all_income": ["\uad6d\ubbfc\ucd1d\uc18c\ub4dd(\ub2e8\uc704: \uc6d0)", "Gross National Income (Won)"], "assets": ["\uc790\uc0b0(\uc6d0)", "Assets (Won)"], "debt_information": ["\ubd80\ucc44(\uc6d0)", "Debt (Won)"], "job_offer_plan_pop": ["\ucc44\uc6a9\uacc4\ud68d \uc778\uc6d0(\uba85)", "Total Recruitment(persons)"], "job_lack_rate": ["\ubd80\uc871\ub960(%)", "Shortage(%)"], "job_skill_total": ["\ubbf8\ucda9\uc6d0 \uc778\uc6d0(\uba85)", "People are not filled(persons)"], "emp_skill_total": ["\ubbf8\ucda9\uc6d0 \uc778\uc6d0(\uba85)", "People are not filled(persons)"], "med_man": ["\uc758\ub8cc\uae30\uad00 \uc885\uc0ac\uc790", "Employee of Hospitals"], "med_man_per": ["\ucc9c \uba85\ub2f9 \uc758\ub8cc\uae30\uad00 \uc885\uc0ac\uc790 \uc218(\uba85)", "Number of employees in medical institutions per 1,000 (persons)"], "med_man_cnt": ["\uc885\uc0ac\uc790 \uc218(\uba85)", "Employees(persons)"], "med_hos_cnt": ["\ubcd1\uc6d0 \ubc0f \ubcd1\uc0c1 \uc218", "Hospital & Beds"], "patient_cnt": ["\uc218\uc220 \uc778\uc6d0 \uc218(\uba85)", "Operating Personnel(persons)"], "smoking_rate": ["\ud761\uc5f0\uc728(%)", "Smoking Rate(%)"], "drinking_rate": ["\uc74c\uc8fc\uc728(%)", "Drinking Rate(%)"], "high_risk_drinking_rate": ["\uace0\uc704\ud5d8 \uc74c\uc8fc\uc728(%)", "High-risk Drinking Rate(%)"], "obesity_rate": ["\ube44\ub9cc\uc728(%)", "Obesity Rate"], "traffic_accidents_cnt": ["\uad50\ud1b5\uc0ac\uace0 \uac74\uc218", "Traffic Accidents"], "traffic_accidents_rate": ["\uad50\ud1b5\uc0ac\uace0 \ube44\uc728", "Traffic Accident Ratio"], "suicide_rate": ["\uc790\uc0b4\uc790(\uc778\uad6c \uc2ed\ub9cc\uba85 \ub2f9)", "Suicide Rate"], "patients_cnt": ["\ud658\uc790 \uc218(\uba85)", "Patients(persons)"], "crimes_cnt": ["\ubc94\uc8c4 \uac74\uc218(\ub2e8\uc704: \uac74)", "Crimes (unit: cases)"], "foreigners_cnt": ["\ucc9c\uba85 \ub2f9 \uc678\uad6d\uc778\uc218(\uba85)", "Foreigners per 1,000 people(persons)"], "foreigners_cnt_all": ["\ub4f1\ub85d \uc678\uad6d\uc778\uc218(\uba85)", "Number of registered foreigners(persons)"], "people_cnt": ["\uc778\uc6d0\uc218(\uba85)", "Number of people(persons)"], "dt_11001n_a035_value_h003": ["\uad50\uc6d0 \uc218(\uba85)", "Teacher(persons)"], "dt_11001n_a035_value_h002": ["\ud559\uc0dd \uc218(\uba85)", "Students(persons)"], "dt_11001n_a035_value_h001": ["\ud559\uad50 \uc218(\ub2e8\uc704: \uac1c)", "School"], "student_vs_teacher": ["\uad50\uc6d0 \ud55c\uba85 \ub2f9 \ud559\uc0dd \uc218", "Number of students per teacher"], "private_institutes": ["\ud559\uc6d0 \uc218", "Academy"], "private_education_expenses": ["\uad50\uc721\ube44\uc6a9(\uc6d0)", "Education Expenses(Won)"], "participation_rate": ["\ucc38\uc5ec\uc728(%)", "Participation Rate(%)"], "1pe105": ["\uc0ac\uad50\uc721\ube44(\uc6d0)", "Education Expenses(Won)"], "dt_1pe105_value": ["\uc0ac\uad50\uc721\ube44(\uc6d0)", "Education Expenses(Won)"], "1pe107": ["\uc0ac\uad50\uc721 \ucc38\uc5ec\uc728(%)", "Participation Rate(%)"], "car_cnt": ["\uc790\ub3d9\ucc28 \uc218", "Cars"], "sch_level": ["\ud559\uad50 \uc720\ud615", "School Type"], "item": ["\uc720\ud615", "Type"], "EMP_S1": ["\uc2e0\uc785(\uba85)", "Newcomer(persons)"], "EMP_S2": ["\ucd08\uae09(\uba85)", "Beginner(persons)"], "EMP_S3": ["\uc911\uae09(\uba85)", "Intermediate(persons)"], "EMP_S4": ["\uace0\uae09(\uba85)", "Advanced(persons)"], "EMP_S5": ["\ud2b9\uae09(\uba85)", "Expert(persons)"], "dt_11001n_a043_value": ["\uc758\ub8cc\uc778\uc6d0 \uc218(\uba85)", "Number of medical personnel(persons)"], "dt_1hdca01_value": ["\uae08\uc561", "Amount"], "dt_11001n_a042_value": ["\uc758\ub8cc\uc2dc\uc124 \uc218(\uac1c)", "Hospital & Beds"], "per_pop_1000_value": ["\ucc9c\uba85\ub2f9 \uc778\uad6c \uc218(\uba85)", "Population per 1,000 people(persons)"], "dt_11001n_a042_value_med04_per": ["\uc778\uad6c \ucc9c\uba85\ub2f9 \ubcd1\uc0c1 \uc218", "Beds per 1,000 people(persons)"], "dt_1yl21001_value": ["\ud761\uc5f0\uc728(%)", "Smoking Rate(%)"], "dt_1yl21031_value": ["\ube44\ub9cc\uc728(%)", "Obesity Rate(%)"], "CA00001121": ["\uad50\ud1b5\uc0ac\uace0 \ubc1c\uc0dd \uac74\uc218(\ub2e8\uc704: \uac74)", "Traffic Accidents (cases)"], "CA00001122": ["\uad50\ud1b5\uc0ac\uace0 \ube44\uc728", "Traffic Accidents Rate"], "CA00000148": ["\uc0ac\ub9dd\uc790 \uc218(\uba85)", "Number of deaths(persons)"], "CA00001229": ["\uc778\uad6c \uc2ed\ub9cc \uba85 \ub2f9 \uc790\uc0b4 \uc218(\uba85)", "Number of suicides per 100,000 population(persons)"], "CA00001012": ["\ud658\uc790 \uc218(\uba85)", "Patients(persons)"], "CA00001123": ["\uad50\ud1b5 \uc0ac\uace0\uc728", "Traffic Accident Rate"], "CA00001124": ["\uc778\uad6c \ucc9c \uba85\ub2f9 \ubc94\uc8c4 \ubc1c\uc0dd \uac74\uc218", "Crimes(per 1,000)"], "CA00001114": ["\uc778\uad6c \ucc9c \uba85\ub2f9 \ubc94\uc8c4 \ubc1c\uc0dd \uac74\uc218", "Crimes(per 1,000)"], "CA00001224": ["\uc18c\ub144 \ucc9c \uba85\ub2f9 \uc18c\ub144\ubc94\uc8c4 \ubc1c\uc0dd \uac74\uc218", "Juvenile crime(per 1,000)"], "CA00000149": ["\ucd9c\uc0dd\uc544 \uc218(\uba85)", "Number of births(persons)"], "CA00006112": ["\uc8fc\ud0dd\ubcf4\uae09\uc728", "Housing penetration rate"], "dt_110025_a045_value": ["\ub2e4\ubb38\ud654 \uac00\uad6c\uc6d0 \uc218(\uba85)", "Number of Multicultural household members(persons)"], "tx_11025_a001_value": ["\uac70\uc8fc \uc678\uad6d\uc778 \uc218(\uba85)", "Number of resident foreigners(persons)"], "C04": ["\uacbd\uc0c1\uc18c\ub4dd(\uc6d0)", "Income (Won)"], "C05": ["\uc790\uc0b0(\uc6d0)", "Assets (Won)"], "C06": ["\ubd80\ucc44(\uc6d0)", "Debt (Won)"], "CA00000263": ["\uc790\ub3d9\ucc28 \uc218", "Cars"], "WORKHOURS": ["\uadfc\ub85c\uc2dc\uac04(\uc2dc\uac04)", "Working Hours(Hour)"], "DURATION": ["\uadfc\uc18d\uae30\uac04(\ub2e8\uc704: \ub144)", "Years of Service(unit: year)"], "education": ["\ud559\ub825", "Level of Education"], "MD_8": ["\uc6d4 \uadfc\ub85c\uc2dc\uac04(\uc2dc\uac04)", "Monthly Working Hours(Hour)"], "pay_grade": ["\uae09\uc5ec(\ub9cc\uc6d0)", "Wages(Won)"], "year_income": ["\uc5f0\ub3c4\ubcc4 \uacbd\uc0c1\uc18c\ub4dd", "Income by Year"], "year_assets": ["\uc5f0\ub3c4\ubcc4 \uc790\uc0b0", "Assets by Year"], "num_of_birth": ["\ucd9c\uc0dd\uc544 \uc218(\uba85)", "Number of Birth (persons)"], "births_growth": ["\ucd9c\uc0dd\ub960", "Growth of Births"], "aged_child_ratio": ["\ub178\ub839\ud654\uc9c0\uc218", "Aged-child Ratio"], "senior_citizenn_ratio": ["\uace0\ub839\uc778\uad6c\ube44\uc728(%)&\ub3c5\uac70\ub178\uc778\uac00\uad6c\ube44\uc728(%)", "Rate with Senior Citizens & Elder Who Lives Alone"], "senior_leisure": ["\ub178\uc778\uc5ec\uac00\uc2dc\uc124(\uac1c/\ucc9c\uba85 \ub2f9)", "Rate with Senior Citizens & Elder Who Lives Alone"], "estimated_population": ["\ucd94\uacc4\uc778\uad6c", "Estimated Population"], "estimated_pop": ["\ucd94\uacc4\uc778\uad6c \ubc0f \uc8fc\ubbfc\ub4f1\ub85d\uc778\uad6c(\uba85)", "Estimated Pop&Registered Pop (persons)"], "death_birth": ["\uc0ac\ub9dd\uc790 \ubc0f \ucd9c\uc0dd\uc790(\uba85)", "Death Pop&Birth Pop (persons)"], "move_in_out": ["\uc804\uc785\uc790/\uc804\ucd9c\uc790/\uc21c\uc774\ub3d9\uc778\uad6c(\uba85)", "Move-in-out (persons)"], "CA00000151": ["\uc21c\uc774\ub3d9\uc778\uad6c(\uba85)", "Move-in-out(persons)"], "apartment_status": ["\uc544\ud30c\ud2b8 \uc804\uc138/\ub9e4\ub9e4\uac00\uaca9 \uc9c0\uc218", "Apartment Status"], "housing_status": ["\uc8fc\ud0dd(\uc544\ud30c\ud2b8)\uac00\uaca9 \uc9c0\uc218(2017.11\uae30\uc900)", "Housing Status(Based 11.2017)"], "housing_price_growth": ["\uc8fc\ud0dd \uac00\uaca9 \uc0c1\uc2b9\ub960", "Price Increase Rate"], "avg_wage": ["Average Salary", "Average Salary"], "seoul_map_data": ["\uc720\ub3d9\uc778\uad6c", "Floating Population"], "seoul_candlelight_demonstration_data": ["2016 \uadf8\ud574 \uaca8\uc6b8", "2016 That Winter"], "holiday_data": ["\uac00\uc871\uacfc \ud568\uaed8 \ud558\ub294 \ub0a0", "Day with family"], "street_data": ["STREET", "STREET"], "hotplace_data": ["\ud56b\ud50c\ub808\uc774\uc2a4", "Hot Place"], "culture_data": ["\ubb38\ud654\uac00 \uc788\ub294 \ub0a0", "Culture Day"], "gentrification_data": ["\uc820\ud2b8\ub9ac\ud53c\ucf00\uc774\uc158", "Gentrification"], "gdp_data": ["\uc138\uacc4\uc18d\uc758 \ub300\ud55c\ubbfc\uad6d", "Korea in the World"], "gci_data": ["\uad6d\uac00 \uacbd\uc7c1\ub825", "National competitiveness"], "trading_data": ["\ubd80\ub3d9\uc0b0 \uc2e4\uac70\ub798\uac00", "Real estate"], "pums": ["ACS PUMS", "ACS PUMSs"], "gender": ["\uc131\ubcc4", "GENDER"], "share": ["\ube44\uc728(%)", "SHARE(%)"], "MED03": ["\ubcd1\uc6d0 \uc218(\ub2e8\uc704: \uac1c)", "Total Hospital"], "MED04": ["\ubcd1\uc0c1 \uc218(\ub2e8\uc704: \uac1c)", "Total Beds"], "work_day": ["\uadfc\ub85c\uc77c\uc218", "Working days"], "A00": ["\uc804\uccb4", "All ages"], "A02": ["< 19", "< 19"], "A03": ["20-24", "20-24"], "A04": ["25-29", "25-29"], "A05": ["30-34", "30-34"], "A06": ["35-39", "35-39"], "A07": ["40-44", "40-44"], "A08": ["45-49", "45-49"], "A09": ["50-54", "50-54"], "A10": ["55-59", "55-59"], "A11": ["60+", "60+"], "PAY00": ["\uc804\uccb4", "All Pay Grade"], "PAY01": ["0~80", "0-800K"], "PAY02": ["80~90", "800-900K"], "PAY03": ["90~100", "900K-1M"], "PAY04": ["100~110", "1-1.1M"], "PAY05": ["110~120", "1.1-1.2M"], "PAY06": ["120~130", "1.2-1.3M"], "PAY07": ["130~140", "1.3-1.4M"], "PAY08": ["140~150", "1.4-1.5M"], "PAY09": ["150~160", "1.5-1.6M"], "PAY10": ["160~170", "1.6-1.7M"], "PAY11": ["170~180", "1.7-1.8M"], "PAY12": ["180~190", "1.8-1.9M"], "PAY13": ["190~200", "1.9-2M"], "PAY14": ["200~220", "2-2.2M"], "PAY15": ["220~240", "2-2.2M"], "PAY16": ["240~260", "2.4-2.6M"], "PAY17": ["260~280", "2.6-2.8M"], "PAY18": ["280~300", "2.8-3M"], "PAY19": ["300~350", "3-3.5M"], "PAY20": ["350~400", "3.5-4M"], "PAY21": ["400~450", "4-4.5M"], "PAY22": ["450~500", "4.5-5M"], "PAY23": ["500~600", "5-6M"], "PAY24": ["600~", "6M+"], "AGE00": ["\uc804\uccb4", "All ages"], "AGE02": ["<19", "<19"], "AGE03": ["20-24", "20-24"], "AGE04": ["25-29", "25-29"], "AGE05": ["30-34", "30-34"], "AGE06": ["35-39", "35-39"], "AGE07": ["40-44", "40-44"], "AGE08": ["45-49", "45-49"], "AGE09": ["50-54", "50-54"], "AGE10": ["55-59", "55-59"], "AGE11": ["60+", "60+"], "dt_1yl20991_value": ["\uc74c\uc8fc\uc728", "Drinking Rate"], "dt_1yl20291_value": ["\uace0\uc704\ud5d8 \uc74c\uc8fc\uc728", "High Risk Drinking Rate"], "select_1yl_values": ["\uc74c\uc8fc\uc728 or \uace0\uc704\ud5d8 \uc74c\uc8fc\uc728", "Drinking Rate or High Risk Drinking Rate"], "AVEAGE": ["\ud3c9\uade0 \uc5f0\ub839", "Average Age"], "WORKDAYS": ["\uadfc\ub85c\uc77c\uc218", "Working Days"], "DD_5": ["\uc6d4 \uae09\uc5ec\uc561", "Monthly Wage"], "DD_2": ["\uadfc\ub85c \uc2dc\uac04(\uc2dc\uac04)", "Working Hours(Hours)"], "gender_wage": ["\uc784\uae08 \ucc28\uc774(\ub0a8-\uc5ec)(\ucc9c\uc6d0)", "Wage Difference(Male-Female)(KRW 1,000)"], "DD_10_MAN": ["\ub0a8\uc131 \uc6d4 \uc784\uae08\ucd1d\uc561(\ucc9c\uc6d0)", "Male Monthly Wage Amount(KRW 1,000)"], "DD_10_WMAN": ["\uc5ec\uc131 \uc6d4 \uc784\uae08\ucd1d\uc561(\ucc9c\uc6d0)", "Female Monthly Wage Amount(KRW 1,000)"], "sexs": ["\uc131\ubcc4", "Gender"], "interval_emptype": ["\uace0\uc6a9 \uc720\ud615\ubcc4 \uc6d4\uae09\uc5ec \ucc28\uc774(\uc6d0)", "Wage Interval between Employee Type(Won)"], "sex_interval": ["\uc131\ubcc4 \uc6d4\uae09\uc5ec \ucc28\uc774(\uc6d0)", "Wage Interval between Gender(Won)"], "std_ym": ["\ub144\uc6d4", " year and month"], "group_id": ["\uc0c1\uc704\uc9c0\uc5ed", "parent region"], "CA00000152": ["\uc8fc\ubbfc\ub4f1\ub85d\uc778\uad6c", "resident population"], "quarter": ["\ubd84\uae30", "quarter"], "flow_value": ["\uc720\ub3d9\uc778\uad6c", "Floating Population"], "kr_pol_flow_ttl": ["\uc804\uccb4 \uc720\ub3d9\uc778\uad6c(\uba85)", "TOTAL Floating Population (persons)"], "kr_pol_flow_man": ["\ub0a8\uc131 \uc720\ub3d9\uc778\uad6c(\uba85)", "Man Floating Population (persons)"], "kr_pol_flow_wman": ["\uc5ec\uc131 \uc720\ub3d9\uc778\uad6c(\uba85)", "Woman Floating Population (persons)"], "kr_pol_flow_10g": ["10\ub300 \uc720\ub3d9\uc778\uad6c(\uba85)", "10-year-old Floating Population (persons)"], "kr_pol_flow_20g": ["20\ub300 \uc720\ub3d9\uc778\uad6c(\uba85)", "20-year-old Floating Population (persons)"], "kr_pol_flow_30g": ["30\ub300 \uc720\ub3d9\uc778\uad6c(\uba85)", "30-year-old Floating Population (persons)"], "kr_pol_flow_40g": ["40\ub300 \uc720\ub3d9\uc778\uad6c(\uba85)", "40-year-old Floating Population (persons)"], "kr_pol_flow_50g": ["50\ub300 \uc720\ub3d9\uc778\uad6c(\uba85)", "50-year-old Floating Population (persons)"], "kr_pol_flow_60g": ["60\ub300 \uc774\uc0c1 \uc720\ub3d9\uc778\uad6c(\uba85)", "Floating Population over 60 years old (persons)"], "kr_pol_flow_resvsttl": ["\uc8fc\ubbfc\ub4f1\ub85d\uc778\uad6c \ub300\ube44 \uc720\ub3d9\uc778\uad6c(\ub2e8\uc704: \ubc30)", "Floating Population compared to Resident Population (unit: times)"], "kr_pol_flow_res": ["\uc8fc\ubbfc\ub4f1\ub85d\uc778\uad6c", "Resident Population"], "month": ["\uc6d4", " month"], "population": ["\uc778\uad6c\uc218(\uba85)", "population(persons)"], "price_index": ["\ubb3c\uac00\uc9c0\uc218", "Price Index"], "data_i61a_080y034_value": ["15\uc138\uc774\uc0c1\uc778\uad6c", "population over 15"], "data_i61b_080y034_value": ["\uacbd\uc81c\ud65c\ub3d9\uc778\uad6c", "Economically active population"], "data_i61c_080y034_value": ["\ube44\uacbd\uc81c\ud65c\ub3d9\uc778\uad6c", "Inactive population"], "data_i61d_080y034_value": ["\uacbd\uc81c\ud65c\ub3d9\ucc38\uc5ec\uc728", "Economic activity participation rate"], "data_i61ba_080y034_value": ["\ucde8\uc5c5\uc790", "Employee"], "data_i61bb_080y034_value": ["\uc2e4\uc5c5\uc790", "Unemployed"], "data_i61bc_080y034_value": ["\uc2e4\uc5c5\ub960", "Unemployment Rate"], "data_i61e_080y034_value": ["\uace0\uc6a9\ub960", "Employment Rate"], "data_00_021y126_value": ["\ucd1d\uc9c0\uc218", "Total Exponent"], "data_110_021y126_value": ["\uc0dd\ud65c\ubb3c\uac00\uc9c0\uc218", "CPI"], "data_h69a_085y069_value": ["\uc885\ud569", "General"], "data_h69a_085y070_value": ["\uc885\ud569", "General"], "data_4010102_i04y009_value": ["Dubai(\ud604\ubb3c)", "Dubai(Current)"], "data_aaaa16_010y002_value": ["M1(\ud611\uc758\ud1b5\ud654, \ud3c9\uc794)", "M1(average balance)"], "data_aaaa18_010y002_value": ["M2(\uad11\uc758\ud1b5\ud654, \ud3c9\uc794)", "M2(average balance)"], "data_aaaa1e_010y002_value": ["Lf(\ud3c9\uc794)", "Lf(average balance)"], "data_aaaa1f_010y002_value": ["L(\ub9d0\uc794)", "L(end balance)"], "data_aaaa22_010y002_value": ["\uc608\uae08\uc740\ud589\ucd1d\uc608\uae08(\ud3c9\uc794)", "Total deposit of deposit bank(average balance)"], "data_aaaa26_010y002_value": ["\uc608\uae08\uc740\ud589\ub300\ucd9c\uae08(\ud3c9\uc794)", "Total Loan of deposit bank(average balance)"], "data_1000000_008y001_value": ["\uac00\uacc4\uc2e0\uc6a9", "Household Credit"], "data_mo3ab_085y002_value": ["\uac00\uacc4\ub300\ucd9c", "Household loan"], "house_price_index": ["\uc8fc\ud0dd\uac00\uaca9\uc9c0\uc218", "House price index"], "oil_price": ["\uad6d\uc81c\uc720\uac00", "International Oil Price"], "m1_m2_value": ["\ud611\uc758/\uad11\uc758 \ud1b5\ud654", "Negotiation / Extra Currency"], "lf_l_value": ["\uae08\uc735\uae30\uad00 \uad11\uc758 \uc720\ub3d9\uc131", "Liquidity of financial institutions"], "aaaa22_26_value": ["\uc608\uae08\uc740\ud589 \uc608\uae08 \ubc0f \ub300\ucd9c\uae08", "Deposit bank deposits and loans"], "1000000_mo3ab_value": ["\uac00\uacc4\uc2e0\uc6a9 \ubc0f \ub300\ucd9c", "Household Credits and lending"], "gdp_growth": ["GDP \uc2e4\uc9c8\uc131\uc7a5\ub960", "GDP Real growth rate"], "gdp_amt": ["GDP", "GDP"], "gni_amt": ["GNI", "GNI"], "gdp_per_people_amt": ["1\uc778\ub2f9 GDP", "GDP per capita"], "gni_per_people_amt": ["1\uc778\ub2f9 GNI", "GNI per person"], "gdp_dpl_idx": ["GDP \ub514\ud50c\ub808\uc774\ud130", "GDP Deflator"], "gdp_idx_growth": ["GDP \ub514\ud50c\ub808\uc774\ud130 \uc0c1\uc2b9\ub960", "GDP Deflator growth rate"], "gni_import_export": ["\uc218\ucd9c\uc785 \ub300 GNI \ube44\uc728", "GNI ratio to imports and exports"], "data_10101_102y002_value": ["GDP", "GDP"], "data_20101_102y002_value": ["GDP \uc2e4\uc9c8\uc131\uc7a5\ub960", "GDP real growth rate"], "cst_ready_amount": ["\uad6d\ub0b4\uac74\uc124\uae30\uc131\uc561", "domestic construction amount"], "data_i48aaa_085y137_value": ["\uacf5\uacf5\uae30\uad00", "public agency"], "data_i48aab_085y137_value": ["\ubbfc\uac04\uae30\uad00", "private agency"], "order_amount": ["\uad6d\ub0b4\uac74\uc124 \uc218\uc8fc\uc561", "domestic construction orders"], "data_i42aaa_080y017_value": ["\uacf5\uacf5\ubd80\ubb38", "public sector"], "data_i42aab_080y017_value": ["\ubbfc\uac04\ubd80\ubb38", "private sector"], "order_amount_public": ["\uacf5\uacf5\ubd80\ubb38", "public sector"], "order_amount_private": ["\ubbfc\uac04\ubd80\ubb38", "private sector"], "building_pms_area": ["\uac74\ucd95\ud5c8\uac00\uba74\uc801(\u33a1)", "building permission area(\u33a1)"], "machinery_order": ["\uad6d\ub0b4\uae30\uacc4 \uc218\uc8fc\uc561", "domestic machinery orders"], "fct_investment_idx": ["\uc124\ube44\ud22c\uc790 \uc9c0\uc218", "equipment investment index"], "export_amt": ["\uad6d\ubcc4\uc218\ucd9c(\uad00\uc138\uccad)", "export by country(customs)"], "import_amt": ["\uad6d\ubcc4\uc218\uc785(\uad00\uc138\uccad)", "import by country(customs)"], "economy": ["\uacbd\uc81c", "ECONOMY"], "data_90103_102y002_value": ["GDP \ub514\ud50c\ub808\uc774\ud130 \uc9c0\uc218", "GDP Deflator Index"], "data_10102_102y002_value": ["GNI \uad6d\ubbfc\ucd1d\uc18c\ub4dd", "GNI gross national income"], "data_90101_102y002_value": ["\uc218\ucd9c \uc758 \ub300 GNI \ube44\uc728", "export-to-GNI ratio"], "data_90102_102y002_value": ["\uc218\uc785 \uc758 \ub300 GNI \ube44\uc728", "import-to-GNI ratio"], "data_fiee_023y001_value": ["\ud1b5\uad00\uae30\uc900 \uc218\ucd9c\uc561", "export value based on custom clearance"], "data_fief_023y002_value": ["\ud1b5\uad00\uae30\uc900 \uc218\uc785\uc561", "import value based on custom clearance"], "data_1_080y118_value": ["\uac74\ucd95\ud5c8\uac00\uba74\uc801(\u33a1)", "building permission area(\u33a1)"], "data_i351aaba_080y015_value": ["\uad6d\ub0b4\uae30\uacc4 \uc218\uc8fc\uc561(\uc81c\uc870\uc5c5)", "domestic machinery orders(manufacturing)"], "data_i15a_085y025_value": ["\uc124\ube44\ud22c\uc790\uc9c0\uc218(2010=100)", "caped index(2010=100)"], "edu_grade": ["\ud559\ub825\ubcc4 \uadfc\uc18d\uae30\uac04", "Service Period by Educational Background"], "EMP_DD": ["\uc778\uc6d0(\uba85)", "Personnel(persons)"], "trd_unit_price": ["\ub9e4\ub9e4 \ud3c9\ub2e8\uac00(\ub9cc\uc6d0)", "Selling Price(10,000 WON)"], "rent_y_unit_price": ["\uc804\uc138 \ud3c9\ub2e8\uac00(\ub9cc\uc6d0)", "Charter(10,000 WON)"], "rent_m_unit_price": ["\uc6d4\uc138 \ud3c9\ub2e8\uac00(\ub9cc\uc6d0)", "Monthly Rent(10,000 WON)"], "unit_price": ["\ud3c9\ub2e8\uac00(\ub9cc\uc6d0)", "Standard Price(10,000 WON)"]},
+          glossary = {"RCA": {"def": "The RCA calculation compares the share in a given constraint versus the national share.", "link": "/about/glossary/#rca", "alts": ["Most Specialized", "most specialized", "relatively high", "High Relative", "Revealed Comparative Advantage", "revealed comparative advantage"]}, "yield_total": {"def": "Percentage of admitted students who enrolled.", "alts": ["Enrollment Yield", "enrollment yield"]}, "excessive_drinking": {"def": "The percentage of adults that report excessive drinking."}, "GRDP": {"def": "\uc9c0\uc5ed\ub0b4\ucd1d\uc0dd\uc0b0(Gross regional domestic product)\uc73c\ub85c \uc2dc\u318d\ub3c4\ub2e8\uc704\ubcc4 \uc0dd\uc0b0\uc561, \ubb3c\uac00 \ub4f1 \uae30\ucd08\ud1b5\uacc4\ub97c \ubc14\ud0d5\uc73c\ub85c \uc77c\uc815 \uae30\uac04\ub3d9\uc548 \ud574\ub2f9\uc9c0\uc5ed\uc758 \ucd1d\uc0dd\uc0b0\uc561\uc744 \ucd94\uacc4\ud558\ub294 \uc2dc\u318d\ub3c4\ub2e8\uc704\uc758 \uc885\ud569\uacbd\uc81c\uc9c0\ud45c\ub97c \ub9d0\ud55c\ub2e4.", "def_en": "Gross regional domestic product refers to the comprehensive economic index of the city or province in which the total ouput of the region is estimated for a certain period based on basic statistics such as the among of production by city and province.", "link": "https://terms.naver.com/entry.nhn?docId=72388&cid=43667&categoryId=43667"}, "\ucd94\uacc4\uc778\uad6c": {"def": "\ucd94\uacc4\uc778\uad6c\ub780 \ud5a5\ud6c4 \uc778\uad6c \ubcc0\ub3d9\uc694\uc778(\ucd9c\uc0dd, \uc0ac\ub9dd, \uc774\ub3d9)\ubcc4 \uac00\uc815\uc5d0 \ub530\ub77c \ucd94\uacc4\ud55c \uc7a5\ub798\uc778\uad6c \uaddc\ubaa8\uc640 \uc5f0\ub839\ubcc4 \uad6c\uc870\uc5d0 \ub300\ud55c \ucd94\uc815\uce58\ub97c \ub9d0\ud569\ub2c8\ub2e4.", "def_en": "It means an estimate of future population size and age structure estimated by future population changes (birth, death, migration).", "alts": ["Estimated Population"]}, "\ub178\ub839\ud654\uc9c0\uc218": {"def": "\ub178\ub839\ud654\uc9c0\uc218\ub780, \uc720\uc18c\ub144(14\uc138 \uc774\ud558) \uc778\uad6c 100\uba85\uc5d0 \ub300\ud55c \uace0\ub839(65\uc138 \uc774\uc0c1) \uc778\uad6c\uc758 \ube44\ub97c \ub73b\ud569\ub2c8\ub2e4.", "def_en": "It means the ratio of the elderly(over 65 years) population to the population of 100(under 14).", "alts": ["Aging Index", "aging index", "Aging index"]}, "\uc804\uc785\uc790": {"def": "\uc804\uc785\uc790\ub780 \ud589\uc815\uad6c\uc5ed(\uc74d\uba74\ub3d9) \uacbd\uacc4\ub97c \ub118\uc5b4 \ub2e4\ub978 \uc9c0\uc5ed\uc5d0\uc11c \ud2b9\uc815 \uc9c0\uc5ed\uc73c\ub85c \uc774\ub3d9\ud574 \uc628 \uc778\uad6c\ub97c \ub9d0\ud569\ub2c8\ub2e4. ", "def_en": "A migrant is a population that has crossed the border of the administrative district and moved from one area to another. ", "alts": ["move-in population"]}, "\uc804\ucd9c\uc790": {"def": "\uc804\ucd9c\uc790\ub780 \ud589\uc815\uad6c\uc5ed(\uc74d\uba74\ub3d9) \uacbd\uacc4\ub97c \ub118\uc5b4 \ud2b9\uc815 \uc9c0\uc5ed\uc5d0\uc11c \ub2e4\ub978 \uc9c0\uc5ed\uc73c\ub85c \uc774\ub3d9\ud574 \uac04 \uc778\uad6c\ub97c \ub9d0\ud569\ub2c8\ub2e4.", "def_en": "The person who transferred is the population moving from one area to another across the border of the administrative district.", "alts": ["move-out population"]}, "\uc21c\uc774\ub3d9\uc778\uad6c": {"def": "\uc21c\uc774\ub3d9\uc778\uad6c\ub780 \ud2b9\uc815\ud55c \uc9c0\uc5ed\ub0b4\uc758 \uc804\uc785\uc790\uc218\uc640 \uc804\ucd9c\uc790\uc218\uc758 \ucc28\uc774\ub97c \ub9d0\ud558\uba70, \uc804\uc785\uc774 \uc804\ucd9c\ubcf4\ub2e4 \ub9ce\uc740 \uacbd\uc6b0\ub97c \uc21c\uc720\uc785(\uc804\uc785\ucd08\uacfc), \uc804\ucd9c\uc774 \uc804\uc785\ubcf4\ub2e4 \ub9ce\uc740 \uacbd\uc6b0\ub294 \uc21c\uc720\ucd9c(\uc804\ucd9c\ucd08\uacfc)\ub77c\uace0 \ud569\ub2c8\ub2e4.", "def_en": "It means the difference between the number of transferred persons in a specific area and the number of transferred persons, and is called net inflow (over-move-in-transfer) when transfer is more than transfer, net outflow (over-move-out-transfer) when transfer is more than transfer.", "alts": ["the net migration population", "Net Migration Population"]}, "\uacbd\uc0c1\uc18c\ub4dd": {"def": "\uac00\uad6c\uc6d0\uc774 \uadfc\ub85c\uc81c\uacf5 \ub4f1\uc758 \ub300\uac00\ub85c \ubc1b\ub294, \ube44\uad50\uc801 \uc815\uae30\uc801\uc774\uace0 \uc608\uce21\uc774 \uac00\ub2a5\ud55c, \uacbd\uc0c1\uc801\uc73c\ub85c \ubc1c\uc0dd\ud558\ub294 \uc18c\ub4dd", "def_en": "A relatively regular, predictable, regularly occurred income that a household member receives in return for work.", "alts": ["Income Information"]}, "\uadfc\ub85c\uc18c\ub4dd": {"def": "\uadfc\ub85c\uc790\uac00 \uadfc\ub85c\uc758 \ub300\uac00\ub85c \ubc1b\uc740 \ubaa8\ub4e0 \ud604\uae08\uacfc \ud604\ubb3c\ubcf4\uc218\ub85c \ubd09\uae09, \uc784\uae08\uacfc \uc0c1\uc5ec\uae08, \uc218\ub2f9 \ub4f1\uc744 \ud3ec\ud568\ud558\uba70 \uc138\uae08\uc774\ub098 \uac01\uc885 \ubd80\ub2f4\uae08\uc744 \uacf5\uc81c\ud558\uae30 \uc804\uc758 \ucd1d\uc561", "def_en": "All the cash and in-kind remuneration received by the wage worker in return for work, including salary, wages, bonuses and allowances, and the total amount before tax or deductible", "alts": ["earned income", "Earned income", "Earned Income"]}, "\uc0ac\uc5c5\uc18c\ub4dd": {"def": "\uc0ac\uc5c5\uccb4\ub098 \uc0c1\uc810\uc758 \uc790\uc601\uc5c5\uc8fc \ub610\ub294 \uace0\uc6a9\uc8fc\ub85c \uc9c1\uc811 \uc0ac\uc5c5\uc744 \uacbd\uc601\ud558\uac70\ub098 \uc9c0\uc2dd, \uc7ac\ub2a5\uc744 \uc774\uc6a9\ud558\uc5ec \uc5bb\uc740 \ucd1d\uc218\uc785\uc561\uc5d0\uc11c \uc778\uac74\ube44, \uc7ac\ub8cc\ube44 \ub4f1 \ubaa8\ub4e0 \uc0ac\uc5c5\uc9c0\ucd9c(\ucd1d\ube44\uc6a9)\uc744 \ube80 \uae08\uc561\uc73c\ub85c \ud1a0\uc9c0 \uc774\uc678\uc758 \ubd80\ub3d9\uc0b0\uc0c1 \uad8c\ub9ac\uc758 \ub300\uc5ec\uc640 \uae30\uacc4\uc7a5\ube44 \uc784\ub300\ub85c \ubc1c\uc0dd\ud558\ub294 \uc18c\ub4dd\ub3c4 \ud3ec\ud568\ud558\uace0 \uac00\uacc4\uc870\uc0ac \ub4f1 \uc0ac\ud68c\uc870\uc0ac\uc758 \uc6d4\uac04-\ubd84\uae30\uc870\uc0ac \ub4f1\uc5d0\uc11c \uc0ac\uc5c5\uc18c\ub4dd\uc744 \ud30c\uc545\ud558\uae30 \uc5b4\ub824\uc6b4 \uacbd\uc6b0, \uac00\uacc4\ub85c \uc804\uc785\ub41c \uc18c\ub4dd\uc73c\ub85c \ub300\uccb4\ud558\uc5ec \uc870\uc0ac\ud568", "def_en": "The total amount of income obtained by using the knowledge and talents to operate the business directly as a business owner or a self-employed owner or employer of a store minus all business expenses (total cost) such as labor costs and materials costs. If it is difficult to grasp business income in the monthly-quarterly survey of social surveys such as household surveys, including incomes, it will be replaced with income transferred to households", "alts": ["the business income"]}, "\uc7ac\uc0b0\uc18c\ub4dd": {"def": "\uc18c\uc720\ud55c \uc7ac\uc0b0\uc744 \ud0c0\uc778\uc774 \uc0ac\uc6a9\ud55c \ub300\uac00\ub85c \ubc1b\uc740 \uc21c\uc218\uc785\uc73c\ub85c \uc784\ub300\uc18c\ub4dd, \uc774\uc790\uc18c\ub4dd, \ubc30\ub2f9\uc18c\ub4dd, \uc5f0\uae08\uc18c\ub4dd, \uc0c1\ud45c \uc0ac\uc6a9\ub8cc/\uc778\uc138/\uc0ac\uc6a9\ub8cc \ub4f1\uc774 \ud3ec\ud568", "def_en": "Includes rent income, interest income, dividend income, pension income, trademark usage fee / royalties / royalties received as a net income received in exchange for the property owned by others", "alts": ["the property income"]}, "\uc774\uc804\uc18c\ub4dd": {"def": "\uac00\uad6c\uac00 \ube44\uacbd\uc81c\uc801 \ud65c\ub3d9\uc73c\ub85c \uc5bb\uc740 \uc218\uc785\uc73c\ub85c\uc11c \uacf5\uc801 \ubcf4\uc870\uae08, \uc0ac\uc801 \ubcf4\uc870\uae08\uc744 \ubaa8\ub450 \ud569\uc0b0\ud55c \uae08\uc561\uc73c\ub85c \uac01\uc885 \uc5f0\uae08\ubc95\uacfc \uc0ac\ud68c\ubcf4\uc7a5\uc81c\ub3c4\uc5d0 \ub530\ub77c \uc9c0\uae09\ub41c \uac00\uacc4\ubcf4\uc870\uae08(\uc5f0\uae08 \ub4f1)\uacfc \ub2e4\ub978 \uac00\uad6c\ub85c\ubd80\ud130 \ubc1b\uc740 \uc0dd\uacc4\ube44 \ub610\ub294 \uad50\uc721\ube44 \uc131\uaca9\uc758 \ubcf4\uc870\uae08 \ub4f1\uc774 \ud3ec\ud568", "def_en": "Income derived from non-economic activities by households, including public subsidies and private subsidies. Includes household subsidies (pensions, etc.) paid according to various pension laws and social security schemes and subsidies of living or education expenses received from other households", "alts": ["the transfer income"]}, "\uae08\uc735\uc790\uc0b0": {"def": "\uac1c\uc778\uc774\ub098 \uae30\uc5c5 \ub610\ub294 \uad6d\ubbfc\uacbd\uc81c\uac00 \ubcf4\uc720\ud558\ub294 \uc790\uc0b0(\u8cc7\u7523) \uc911 \uc608\uae08\u00b7\ud604\uae08\u00b7\uc720\uac00\uc99d\uad8c\u00b7\ub300\ucd9c\uae08\u00b7\ubcf4\ud5d8\u00b7\uc2e0\ud0c1\u00b7\uae30\uc5c5\uac04\uc758 \uc2e0\uc6a9 \ub4f1\uc758 \uc790\uc0b0", "def_en": "Assets such as deposits, cash, securities, loans, insurance, trusts, and trusts held by individuals or corporations or the national economy", "alts": ["financial assets", "Financial Assets", "Financial assets"]}, "\uc2e4\ubb3c\uc790\uc0b0": {"def": "\uac74\ubb3c \ud1a0\uc9c0 \ub4f1\uc758 \ubd80\ub3d9\uc0b0\uacfc \ub3c4\ub85c, \uc790\ub3d9\ucc28 \ub4f1 \uc6b4\uc1a1\uc7a5\ube44, \uae30\uacc4\ub958, \uc0dd\ubb3c\uc790\uc6d0, \uc5f0\uad6c\uac1c\ubc1c\ubb3c, \ud1a0\uc9c0, \uc9c0\ud558\uc790\uc6d0 \ub4f1\uc744 \ud3ec\ud568", "def_en": "It includes real estate such as building land, transportation equipment such as roads and cars, machinery, biological resources, R & D water, land, and underground resources.", "alts": ["real assets", "non-financial assets"]}, "\ud55c\uad6d\uc778\ubc30\uc6b0\uc790": {"def": "\ub2e4\ubb38\ud654 \uac00\uad6c \ub0b4 \ud55c\uad6d\uc778\ubc30\uc6b0\uc790\uc758 \uc758\ubbf8\ub294 \ub2e4\ubb38\ud654 \uac00\uad6c\uc758 \uad6c\uc131\uc6d0 \uc911 \ubc30\uc6b0\uc790\uac00 \ud55c\uad6d\uc778\uc744 \uc758\ubbf8", "def_en": "The meaning of Korean spouses in multicultural households means that among the members of multicultural households,", "alts": ["Korean spouses"]}, "\uadc0\ud654\uc790": {"def": "\ub2e4\ubb38\ud654 \uac00\uad6c \ub0b4 \uadc0\ud654\uc790\uc758 \uc758\ubbf8\ub294 \ub2e4\ubb38\ud654 \uac00\uad6c\uc758 \uad6c\uc131\uc6d0\uc73c\ub85c \uadc0\ud654\ud558\uc5ec \ud55c\uad6d\uad6d\uc801\uc744 \ucde8\ub4dd\ud55c \uc678\uad6d\uc778\uc744 \uc758\ubbf8", "def_en": "The meaning of naturalized persons in multicultural households means foreigners who have acquired Korean nationality by becoming a member of multicultural households", "alts": ["naturalized persons"]}, "\uacb0\ud63c\uc774\ubbfc\uc790": {"def": "\ub2e4\ubb38\ud654 \uac00\uad6c \ub0b4 \uacb0\ud63c\uc774\ubbfc\uc790\uc758 \uc758\ubbf8\ub294 \ub2e4\ubb38\ud654 \uac00\uad6c\uc758 \uad6c\uc131\uc6d0\uc73c\ub85c \uacb0\ud63c\ud558\uc5ec \uc774\ubbfc \uc628 \uc678\uad6d\uc778\uc744 \uc758\ubbf8", "def_en": "The meaning of a married immigrant in a multicultural household means a foreigner who has immigrated to marry as a member of a multicultural household", "alts": ["married immigrants"]}, "\uace0\ub839\uc778\uad6c": {"def": "\ucd1d\uc778\uad6c\uc5d0 \ub300\ud55c \uace0\ub839\uc778\uad6c(65\uc138\uc774\uc0c1\uc778\uad6c)\uc758 \uad6c\uc131\ube44", "def_en": "The ratio of the elderly population (population over 65 years) to total population", "alts": ["elderly people"]}, "\uc74c\uc8fc\uc728": {"def": "\ucd5c\uadfc 1\ub144 \ub3d9\uc548 \ud55c \ub2ec\uc5d0 1\ud68c \uc774\uc0c1 \uc220\uc744 \ub9c8\uc2e0 \uc801\uc774 \uc788\ub294 \uc0ac\ub78c\uc758 \ube44\uc728", "def_en": "Percentage of people who have drunk more than once a month during the last year", "alts": ["drinking rate", "Drinking Rate"]}, "M1": {"def": "\ud1b5\ud654\ub77c\uace0\ub3c4 \ud558\uba70, \ud654\ud3d0\uc758 \uc9c0\uae09\uc218\ub2e8\uc73c\ub85c\uc11c\uc758 \uae30\ub2a5\uc744 \uc911\uc2dc\ud55c \ud1b5\ud654\uc9c0\ud45c\ub85c\uc11c \ubbfc\uac04\uc774 \ubcf4\uc720\ud558\uace0 \uc788\ub294 \ud604\uae08\uacfc \ub2f9\uc88c\uc608\uae08, \ubcf4\ud1b5\uc608\uae08 \ub4f1 \uc608\uae08\uc740\ud589 \uc694\uad6c\ubd88\uc608\uae08\uc758 \ud569\uacc4\ub97c \ub9d0\ud568", "def_en": "The amount of money in circulation in notes, coin, current accounts, and deposit accounts."}, "M2": {"def": "\ud1b5\ud654\ubcf4\ub2e4 \ub113\uc740 \uc758\ubbf8\uc758 \ud1b5\ud654\uc9c0\ud45c\ub85c\uc11c \ud604\uae08\uacfc \uc694\uad6c\ubd88\uc608\uae08\ubfd0\ub9cc \uc544\ub2c8\ub77c \uc815\uae30\uc608\uae08, \uc815\uae30\uc801\uae08 \ub4f1 \uc608\uae08\uc740\ud589\uc758 \uc800\ucd95\uc131\uc608\uae08 \uadf8\ub9ac\uace0 \uac70\uc8fc\uc790\uc678\ud654\uc608\uae08\uc744 \ud3ec\ud568\uc2dc\ud0a8 \uac1c\ub150", "def_en": "The amount of money in circulation in notes and coin plus non-interest-bearing bank deposits, building-society deposits, and National Savings accounts by cheque"}, "LF": {"def": "\uae08\uc735\uae30\uad00\uc720\ub3d9\uc131\uc73c\ub85c, \uad11\uc758\ud1b5\ud654\uc5d0 \uc740\ud589\uad8c\uc758 \uae08\uc804\uc2e0\ud0c1 \uadf8\ub9ac\uace0 \ube44\ud1b5\ud654\uae08\uc735\uae30\uad00\uc758 \uc800\ucd95\uc131 \uc608\uae08\uc740 \ubb3c\ub860 \ud1b5\ud654\uae08\uc735\uae30\uad00\uc774 \ubc1c\ud589\ud558\ub294 \uae08\uc735\ucc44, \ud658\ub9e4\ucc44(RP), CD, \uc0c1\uc5c5\uc5b4\uc74c, \ub9e4\ucd9c \ub4f1\uc744 \ubaa8\ub450 \ud3ec\uad04\ud558\ub294 \ud1b5\ud654\uc9c0\ud45c.", "def_en": "Liquidity aggregates of finance institutions, "}, "\uac00\uacc4\uc2e0\uc6a9": {"def": "\uc77c\ubc18\uac00\uacc4\uac00 \uae08\uc735\uae30\uad00\uc5d0\uc11c \uc9c1\uc811 \ube4c\ub9b0 \ub3c8\uacfc \uc2e0\uc6a9\ud310\ub9e4\ud68c\uc0ac \ub4f1\uc744 \ud1b5\ud574 \uc678\uc0c1\uc73c\ub85c \uad6c\uc785\ud55c \uae08\uc561\uc744 \ud569\ud55c \uac83. \ud55c\ub9c8\ub514\ub85c \uc0ac\ucc44\ub97c \uc81c\uc678\ud55c \uc77c\ubc18\uac00\uacc4\uc758 \ubaa8\ub4e0 \ube5a\uc744 \ub9d0\ud568.", "def_en": "The sum of the money borrowed directly from financial institutions by ordinary households and the amount bought by foreign borrowers through credit sales companies. In short, it refers to all the debts of general households except debentures.", "alts": ["household credit", "Household Credit"]}, "\uac00\uacc4\ub300\ucd9c": {"def": "\uac00\uacc4\ub300\ucd9c\uc740 \uac00\uacc4\uc77c\ubc18\uc790\uae08\ub300\ucd9c\uacfc \uac00\uacc4\uc8fc\ud0dd\uc790\uae08\ub300\ucd9c\ub85c \ub098\ub258\ub294\ub370, \uc804\uc790\ub780 \uc740\ud589 \ubcf4\ud5d8\uc0ac \ub4f1\uc5d0\uc11c \ube4c\ub9b0 \uc77c\ubc18\ub300\ucd9c\uae08\uc73c\ub85c \uc2e0\uc6a9\uce74\ub4dc\ud68c\uc0ac\uc758 \ud604\uae08\uc11c\ube44\uc2a4 \ubc0f \uce74\ub4dc\ub860\uc774 \ud3ec\ud568\ub418\uba70, \ud6c4\uc790\ub294 \uc8fc\ud0dd\uc740\ud589 \ub4f1\uc5d0\uc11c \uc9d1\uc744 \uc0ac\uae30 \uc704\ud574 \ube4c\ub9b0 \ub3c8\uc784", "def_en": "It is defined as the amount of money that all adults in the household owe financial institutions. It includes consumer debt and mortgage loans.", "alts": ["household debt", "Household Debt"]}, "\ud3c9\uc794": {"def": "\uc2dc\uc911\uc5d0 \ub3cc\uace0 \uc788\ub294 \ub9e4\uc77c\ub9e4\uc77c\uc758 \ucd1d\ud1b5\ud654\uaddc\ubaa8\ub97c \ud658\uc0b0\ud55c \ud6c4 \uae30\uac04\uc77c\uc218\ub85c \ub098\ub208 \uac12\uc73c\ub85c \uc77c\uc815 \uae30\uac04\ub3d9\uc548 \ucd1d\ud1b5\ud654\uc758 \ud3c9\uade0\uc801\uc778 \uaddc\ubaa8\ub97c \uc758\ubbf8", "def_en": "It is account balance calculated over a chosen period of time based upon multiple closing balances over the period of time.", "alts": ["Average Balance"]}, "\ub9d0\uc794": {"def": "\ud2b9\uc815\uc2dc\uc810\uc758 \ub9d0\uc77c\uc790 \uc794\uc561", "def_en": "It is the net residual balance in an account. It is usually measured at the end of a reporting period, as part of the closing process.", "alts": ["End Balance"]}, "\uac74\uc124\uae30\uc131\uc561": {"def": "\uac74\uc124\uc5c5\uccb4\uc758 \uad6d\ub0b4\uacf5\uc0ac \ud604\uc7a5\ubcc4 \uc2dc\uacf5 \uc2e4\uc801\uc744 \uae08\uc561\uc73c\ub85c \uc870\uc0ac\ud558\uc5ec \uc9d1\uacc4\ud55c \ud1b5\uacc4. \uc870\uc0ac\ub300\uc0c1 \uae30\uac04\uc778 \ud55c \ub2ec \ub3d9\uc548 \uc2dc\uacf5\ud55c \uacf5\uc0ac \uc2e4\uc801\uc744 \uc870\uc0ac\ud55c \uac83\uc774\ubbc0\ub85c \ud574\ub2f9 \uc6d4\uc5d0 \uc2e4\ud589\ub41c \uac74\uc124\ud22c\uc790\ub97c \uc758\ubbf8\ud568. \uc561\uc218\ub294 \ubb3c\uac00\ubcc0\ub3d9\ubd84\uc774 \ud3ec\ud568\ub418\uc5b4 \uc788\ub294 \uacbd\uc0c1\uae08\uc561\uc73c\ub85c \uc870\uc0ac\ub418\uc5b4 \uc2e4\uc9c8\uc801\uc778 \uac74\uc124\ud22c\uc790\ub3d9\ud5a5\uc744 \uc54c\ub824\uba74 \ubb3c\uac00\ubcc0\ub3d9\ubd84\uc744 \uc81c\uac70\ud55c \ubd88\ubcc0\uae30\uc131\uc561\uc744 \ud65c\uc6a9\ud574\uc57c\ud568.", "def_en": "Statistics on the construction companies' domestic construction sites by surveying the construction results by amount. It means construction investment carried out in that month because it is a survey of the construction works constructed during the month of the survey period.", "alts": ["Construction Revenue", "construction revenue"]}, "\uac74\uc124\uc218\uc8fc\uc561": {"def": "\ubc1c\uc8fc\uc790\uac00 \uc81c\uc2dc\ud558\ub294 \uac74\uc124\uace0\uc0ac\ubb3c\uc744 \uac74\uc124\uc5c5\uccb4\uac00 \uc644\uacf5\ud574\uc8fc\uae30\ub85c \ud55c \uac83\uc5d0 \ub300\ud55c \uc30d\ubc29\uac04 \uacc4\uc57d\uc73c\ub85c \uc774\ub8e8\uc5b4\uc9c0\uba70 \uae08\uc561\uacfc \ub0a9\uae30 \ub4f1\uc73c\ub85c \ud45c\ud604\ub428", "def_en": "It is a bilateral contract for the construction company to complete the construction test presented by the client. It is expressed by amount and delivery date.", "alts": ["Domestic Construction Orders"]}, "\uae30\uacc4\uc218\uc8fc\uc561": {"def": "\uc870\uc0ac\ub300\uc0c1 \uae30\uac04 \uc911 \uc120\ubc15\uc744 \ud3ec\ud568\ud558\uc5ec \uae30\uacc4\ub958 \uad00\ub828 \uc9c0\uc815 \uc870\uc0ac\ud488\ubaa9\uc758 \uc0dd\uc0b0\uc744 \uc8fc\ubb38 \ubc1b\uc740 \uae08\uc561\uc744 \ub9d0\ud568.", "def_en": "Refers to the amount of orders ordered for the production of designated investigation items related to machinery, including vessels, during the survey period.", "alts": ["Machinery Orders"]}, "\uc124\ube44\ud22c\uc790\uc9c0\uc218": {"def": "\uc2e4\uc99d\ubd84\uc11d\uc744 \uac70\uccd0 \uc124\ube44\ud22c\uc790\uc640 \uac00\uc7a5 \uc0c1\uad00\uad00\uacc4\uac00 \uae4a\uc740 \uacbd\uae30\ub3d9\ud589\uc9c0\uc218\u00b7\uc81c\uc870\uc5c5 \ubc1c\uc8fc \uac74\uc124\uacf5\uc0ac\uc218\uc8fc\uc561\u00b7\uac74\ucd95\ud5c8\uac00\uba74\uc801\u00b7\uc81c\uc870\uc5c5 \uc0dd\uc0b0\u00b7\ucd9c\ud558\uc9c0\uc218 \ub4f1 \ub2e4\uc12f\uac00\uc9c0 \uc9c0\ud45c\ub97c \uc885\ud569, \uc9c0\uc218\ud654\ud55c \uac83", "def_en": "The results of the empirical analysis show that the five indexes of the coincident index, manufacturing ordering construction orders, construction permission area, manufacturing production and shipments index, which are most closely related to facility investment, are integrated and indexed.", "alts": ["Facility Investment Index"]}, "\ud1b5\uad00\uae30\uc900": {"def": "\ubb34\uc5ed\uc561\uc744 \ud30c\uc545\ud560 \uacbd\uc6b0 \uc138\uad00\uc744 \ud1b5\uacfc\ud558\ub294 \ubb3c\ud488\uc744 \uae30\uc900\uc73c\ub85c \uc9d1\uacc4\ud558\ub294 \uac83\uc744 \ub9d0\ud568.", "def_en": "It involves preparation and submission of documentations required to facilitate export or imports into the country, representing client during customs examination, assessment, payment of duty and co taking delivery of cargo from customs after clearance along with documents", "alts": ["custom clearance"]}, "GDP \ub514\ud50c\ub808\uc774\ud130": {"def": "\uad6d\ub0b4\uc5d0\uc11c \uc0dd\uc0b0\ub418\ub294 \ubaa8\ub4e0 \uc7ac\ud654\uc640 \uc11c\ube44\uc2a4 \uac00\uaca9\uc744 \ubc18\uc601\ud558\ub294 \ubb3c\uac00\uc9c0\uc218.(=(\uba85\ubaa9 GDP/\uc2e4\uc9c8 GDP)*100). \uc774 \ub54c, \uba85\ubaa9 GDP\ub780 \ub2f9\ud574\uc5f0\ub3c4\uc758 \ucd1d\uc0dd\uc0b0\ubb3c\uc744 \ub2f9\ud574\uc5f0\ub3c4\uc758 \uac00\uaca9(\uacbd\uc0c1\uac00\uaca9)\uc73c\ub85c \uacc4\uc0b0\ud55c GDP\uc774\uace0, \uc2e4\uc9c8 GDP\ub780 \ub2f9\ud574\uc5f0\ub3c4\uc758 \ucd1d\uc0dd\uc0b0\ubb3c\uc744 \uae30\uc900\uc5f0\ub3c4\uc758 \uac00\uaca9(\ubd88\ubcc0\uac00\uaca9)\uc73c\ub85c \uacc4\uc0b0\ud55c GDP\ub97c \ub9d0\ud568.", "def_en": "The price index reflects the prices of all goods and services produced in the country(=(nominal GDP / real GDP) * 100).", "alts": ["GDP deflator", "GDP Deflator"]}, "\uc784\uae08\uadfc\ub85c\uc790": {"def": "\uac1c\uc778, \uac00\uad6c, \uc0ac\uc5c5\uccb4\uc640 \uace0\uc6a9\uacc4\uc57d\uc744 \uccb4\uacb0\ud558\uc5ec \uc77c\ud558\uace0 \uadf8 \ub300\uac00\ub85c \uae09\uc5ec, \ubd09\uae09, \uc77c\ub2f9, \ud604\ubb3c \ub4f1\uc744 \ubc1b\ub294 \uadfc\ub85c\uc790\ub97c \ub9d0\ud568", "def_en": "Wage labour is the socioeconomic relationship between a worker and an employer, where the worker sells their labour under a formal or informal employment contract. Also, it means a person whose primary means of income is from the selling of their labour in this way.", "alts": ["Wage Labourer", "wage labourer"]}, "\uc885\uc0ac\uc790": {"def": "\uc870\uc0ac\uae30\uc900\uc77c \ud604\uc7ac \uc784\uae08, \ubd09\uae09 \ub610\ub294 \uc774\uc5d0 \uc900\ud558\ub294 \ubcf4\uc218\ub97c \ubc1b\uace0 \uc0ac\uc5c5\uccb4\uc5d0 \uace0\uc6a9\ub418\uc5b4 \uc788\ub294 \ud53c\uace0\uc6a9\uc790, \uc790\uc601\uc5c5\uc8fc, \ubb34\uae09\uac00\uc871\uc885\uc0ac\uc790 \ub4f1\uc744 \ub9d0\ud568", "def_en": "A person employed for wages or salary, especially at non-executive level.", "alts": ["Employees"]}, "\uc18c\uc815\uc2e4\uadfc\ub85c\uc2dc\uac04": {"def": "\uc0ac\uc5c5\uccb4\uc758 \ucde8\uc5c5\uaddc\uce59, \ub2e8\uccb4\ud611\uc57d \ub4f1\uc73c\ub85c \uc815\ud55c \uc18c\uc815\uadfc\ub85c\uc77c\uc5d0\uc11c \uc815\uaddc\uc801\uc778 \uc5c5\ubb34\uac1c\uc2dc \uc2dc\uc791\uacfc \uc885\ub8cc\uc2dc\uac01\uacfc\uc758 \uc0ac\uc774\uc5d0 \uc2e4\uc81c\ub85c \uadfc\ub85c\ud55c \uc2dc\uac04\uc744 \ub9d0\ud568. 1\uac1c\uc6d4 \ucd1d\uacc4\ud558\uc5ec 1\uc2dc\uac04 \ubbf8\ub9cc\uc758 \ub2e8\uc704\uac00 \uc788\ub294 \uacbd\uc6b0\uc5d0\ub294 30\ubd84 \uc774\uc0c1\uc740 \uc808\uc0c1\ud558\uace0 30\ubd84 \ubbf8\ub9cc\uc740 \uc808\uc0ac\ud568.", "def_en": "Refers to the actual working time between the start and end time of a regular work in a prescribed work day set by the employment rules of a business, a collective agreement, etc. If there is a unit of less than one hour in total for one month, it raises for more than 30 minutes and cuts less than 30 minutes.", "alts": ["predetermined working time"]}, "\uc6d4\uc138": {"def": "\ubcf4\uc99d\uae08 1000\ub9cc\uc6d0\uc744 \uc6d4\uc138 10\ub9cc\uc6d0\uc73c\ub85c \ubcc0\ud658", "def_en": "Convert 10 million won deposit to 100,000 won monthly rent"}, "\ud3c9\ub2e8\uac00": {"def": "\ud3c9\uade0 \ub9e4\uc218 \ub2e8\uac00\uc758 \uc904\uc784\ub9d0", "def_en": "Pre-established uniform price for a good or service, based on its historical price, replacement host, or an analysis of its competitive position in the market.", "alts": ["Standard Price"]}, "per pyeong": {"def": "", "def_en": "(abbreviation py) It is a Korean unit of area and floorspace, equal to square kan or 36 square Korean feet."}, "officetel": {"def": "", "def_en": "It is a portmanteau of [office] and [hotel]. It is a multi-purpose building with residential and commercial units. This is a type of studio apartment or studio flat.", "alts": ["Officetel"]}},
+          percentages = ["degree_after_value", "degree_sexs_value", "degree_satis_value", "degree_field_value", "degree_desc_rate", "emp_rate", "avg_wm_rate", "degree_desc_rate", "share", "MP_13", "MP_4", "MP_1", "EMP_DD_6", "dt_1pe107_value", "1pe107", "MP_14", "MP_15", "recruit_rate", "JOB_DD_6", "select_1yl_values", "dt_1yl21001_value", "dt_1yl20991_value", "dt_1yl20291_value", "dt_1yl21031_value"],
+          proportions = ["non_eng_speakers_pct", "discount", "growth"],
+          per1000 = ["dt_11001n_a042_value_med03_per_1000"],
+          per10000 = [],
+          per100000 = [],
+          affixes = {"degree_desc_avg": ["", "\uc6d0", "Won"], "avg_age": ["", "\uc138", "years"], "avg_emp_salary": ["", "\uc6d0", "Won"], "emp_ttl": ["", "\uba85", " people"], "practician_ttl": ["", "\uba85", ""], "avg_emp_50": ["", "\uc6d0", "Won(KRW)"], "avg_years_service": ["", "\ub144", "years"], "avg_edu_year": ["", "\ub144", "years"], "job_now_pop": ["", "\uba85", " people"], "job_not_emp_pop": ["", "\uba85", " people"], "job_offer_plan_pop": ["", "\uba85", " people"], "ind_now_pop": ["", "\uba85", " people"], "ind_not_emp_pop": ["", "\uba85", " people"], "ind_offer_plan_pop": ["", "\uba85", " people"], "job_skill_total": ["", "\uba85", " people"], "emp_skill_total": ["", "\uba85", " people"], "med_man_per": ["", "\uba85", ""], "med_man_cnt": ["", "\uba85", ""], "DD_10": ["", "\uc6d0", ""], "JOB_DD_7": ["", "\uba85", " people"], "DD_1": ["", "\uc77c", "days"], "DD_4": ["", "\uc2dc\uac04", " hours"], "DD_2": ["", "\uc2dc\uac04", " hours"], "DD_11": ["", "\uc6d0", " Won(KRW)"], "MD_13": ["", "\uc6d0", " WON"], "DURATION": ["", "\ub144", "year"], "AVEAGE": ["", "\uc138", "years"], "WORKERCNT": ["", "\uba85", ""], "WORKHOURS": ["", "\uc2dc\uac04", "hours"], "JOB_DD_3": ["", "\uba85", " people"], "JOB_DD_5": ["", "\uba85", " people"], "EMP_DD_1": ["", "\uba85", " people"], "EMP_DD_2": ["", "\uba85", " people"], "EMP_DD_3": ["", "\uba85", " people"], "EMP_DD_4": ["", "\uba85", " people"], "EMP_DD_5": ["", "\uba85", " people"], "EMP_DD_7": ["", "\uba85", " people"], "TOPPAY": ["", "\uc6d0", " Won"], "DD_12": ["", "\uc6d0", " Won"], "MF_1": ["", "\uba85", " "], "MF_2": ["", "\uba85", " people"], "MF_3": ["", "\uba85", " people"], "MF_4": ["", "\uba85", " people"], "MF_6": ["", "\uba85", " people"], "MF_11": ["", "\uba85", " people"], "MF_12": ["", "\uba85", " people"], "MF_13": ["", "\uba85", " people"], "MF_8": ["", "\uba85", " people"], "MF_17": ["", "\uba85", " people"], "MF_18": ["", "\uba85", " people"], "MF_19": ["", "\uba85", " people"], "EMP_S1": ["", "\uba85", " people"], "EMP_S2": ["", "\uba85", " people"], "EMP_S3": ["", "\uba85", " people"], "EMP_S4": ["", "\uba85", " people"], "EMP_S5": ["", "\uba85", " people"], "MD_8": ["", "\uc2dc\uac04", "hours"], "MD_9": ["", "\uc2dc\uac04", "hours"], "MD_10": ["", "\uc2dc\uac04", "hours"], "year": ["", "\ub144", "years"], "ages_grade": ["", "\uc138", " years old"], "dt_11001n_a043_value": ["", "\uba85", " people"], "dt_1pe105_value": ["", "\uc6d0", " Won"], "1pe105": ["", "\uc6d0", " Won"], "dt_11001n_a035_value_h001": ["", "\uac1c", ""], "dt_11001n_a035_value_h002": ["", "\uba85", ""], "dt_11001n_a035_value_h003": ["", "\uba85", ""], "student_vs_teacher": ["", "\uba85", ""], "WORKDAYS": ["", "\uc77c", "days"], "JOB_DD_1": ["", "\uba85", " people"], "JOB_DD_4": ["", "\uba85", " people"], "DD_5": ["", ",000\uc6d0", " Won(KRW)"], "CA00014124": ["", "\uba85", " people"], "CA00014123": ["", "\uba85", " people"], "CA00000368": ["", "\uc6d0", ""], "CA00000471": ["", "%", " %"], "CA00000591": ["", "\uba85", " people"], "CA00000263": ["", "\ub300", ""], "CA00000470": ["", "%", "%"], "CA00000095": ["", "\uac1c", ""], "CA00001229": ["", "\uba85", " people"], "CA00000094": ["", "\uac1c", ""], "CA00001011": ["", "\uac1c", ""], "CA00001010": ["", "\uba85", " people"], "CA00001121": ["", "\uac74", " cases"], "CA00015130": ["", "km\u00b2", "km\u00b2"], "CA00000155": ["", "%", ""], "CA00000154": ["", "%", "$"], "CA00001224": ["", "\uac74", " cases"], "CA00002042": ["", "%", "%"], "CA00000152": ["", "\uba85", ""], "CA00000151": ["", "\uba85", " people"], "CA00000150": ["", "\uba85", " people"], "CA00006108": ["", "%", "%"], "CA00000149": ["", "\uba85", " people"], "CA00000109": ["", "\uac1c", ""], "CA00000157": ["", "%", "%"], "CA00001114": ["", "\uac74", " cases"], "CA00000148": ["", "\uba85", " people"], "CA00000108": ["", "\uba85", " people"], "CA00000147": ["", "%", "%"], "CA00001012": ["", "\uba85", " people"], "CA00001123": ["", "%", "%"], "CA00000146": ["", "\uba85", " people"], "CA00001122": ["", "%", "%"], "CA00006112": ["", "%", "%"], "CA00000145": ["", "\uba85", " people"], "CA00006111": ["", "", ""], "CA00006103": ["", "", ""], "CA00006104": ["", "", ""], "CA00006105": ["", "", ""], "CA00006107": ["", "", ""], "CA00006110": ["", "", ""], "CA00001225": ["", "%", "%"], "AD": ["", "\uba85", " people"], "ADAA": ["", "\uba85", " people"], "ADAK": ["", "\uba85", " people"], "ADAC": ["", "\uba85", " people"], "ADAL": ["", "\uba85", " people"], "ADAD": ["", "\uba85", " people"], "AF": ["", "\uba85", " people"], "AM": ["", "\uba85", " people"], "T30": ["", "%", "%"], "dt_110025_a045_value": ["", "\uba85", " people"], "tx_11025_a001_value": ["", "\uba85", " people"], "dt_11001n_a042_value": ["", "\uac1c", ""], "C01": ["", "%", "%"], "C02": ["", "\uba85", " people"], "C03": ["", "\uc138", " years"], "C04": ["", "\uc6d0", " WON"], "C0401": ["", "\uc6d0", " WON"], "C0402": ["", "\uc6d0", " WON"], "C0403": ["", "\uc6d0", " WON"], "C0404": ["", "\uc6d0", " WON"], "C05": ["", "\uc6d0", " WON"], "C0501": ["", "\uc6d0", " WON"], "C0502": ["", "\uc6d0", " WON"], "C06": ["", "\uc6d0", " WON"], "C0601": ["", "\uc6d0", " WON"], "C0602": ["", "\uc6d0", " WON"], "C08": ["", "\uc6d0", " WON"], "foreigners_cnt": ["", "\uba85", " people"], "dt_11001n_a042_value_med04_per": ["", "\uac1c", ""], "month": ["", "\uc6d4", "month"], "quarter": ["", "\ubd84\uae30", " quarter"], "population": ["", "\uba85", " people"], "oil_price": ["$", "($/bbl)", "($/bbl)"], "data_i61a_080y034_value": ["", "\uba85", " "], "data_i61b_080y034_value": ["", "\uba85", " "], "data_i61ba_080y034_value": ["", "\uba85", " "], "data_i61bb_080y034_value": ["", "\uba85", " "], "data_i61bc_080y034_value": ["", "%", " %"], "data_i61c_080y034_value": ["", "\uba85", " "], "data_i61d_080y034_value": ["", "%", "%"], "data_i61e_080y034_value": ["", "%", "%"], "data_4010102_i04y009_value": ["$", "($/bbl)", "($/bbl)"], "data_aaaa16_010y002_value": ["", "\uc6d0", " "], "data_aaaa18_010y002_value": ["", "\uc6d0", " "], "data_aaaa1e_010y002_value": ["", "\uc6d0", " "], "data_aaaa1f_010y002_value": ["", "\uc6d0", " "], "data_aaaa22_010y002_value": ["", "\uc6d0", " "], "data_aaaa26_010y002_value": ["", "\uc6d0", " "], "data_1000000_008y001_value": ["", "\uc6d0", " "], "data_mo3ab_085y002_value": ["", "%", "%"], "gdp_growth": ["", "%", "%"], "gdp_amt": ["", "\uc6d0", " WON"], "gni_amt": ["", "\uc6d0", " WON"], "gni_per_people_amt": ["", "\uc6d0", " WON"], "data_10102_102y002_value": ["", "\uc6d0", " "], "gdp_per_people_amt": ["", "\uc6d0", " WON"], "data_10101_102y002_value": ["", "\uc6d0", " "], "data_20101_102y002_value": ["", "%", "%"], "data_10106_102y002_value": ["", "\uc6d0", " WON"], "data_10107_102y002_value": ["", "\uc6d0", " WON"], "gdp_idx_growth": ["", "%", "%"], "gni_import_export": ["", "%", "%"], "data_901_102y002_value": ["", "%", "%"], "data_90101_102y002_value": ["", "%", "%"], "data_90102_102y002_value": ["", "%", "%"], "data_9010301_102y002_value": ["", "%", "%"], "data_i48aaa_085y137_value": ["", "\uc6d0", "WON"], "data_i48aab_085y137_value": ["", "\uc6d0", "WON"], "data_i15a_085y025_value": ["", "(2010=100)", "(2010=100)"], "data_i351aaba_080y015_value": ["", "\uc6d0", "WON"], "data_1_080y118_value": ["", "\u33a1", "\u33a1"], "data_i42aaa_080y017_value": ["", "\uc6d0", "WON"], "data_i42aab_080y017_value": ["", "\uc6d0", "WON"], "data_fiee_023y001_value": ["$", "", ""], "data_fief_023y002_value": ["$", "", ""], "export_amt": ["$", "", ""], "import_amt": ["$", "", ""], "data_fief_023y002_yy_value": ["$", "", ""], "data_fiee_023y001_yy_value": ["$", "", ""], "ind_worker_pay_grd": ["", "\ub9cc\uc6d0", "Won"], "cst_ready_amount": ["", "\uc6d0", "WON"], "data_i48a_085y137_value": ["", "\uc6d0", "WON"], "data_i42a_080y017_value": ["", "\uc6d0", "WON"], "building_pms_area": ["", "\u33a1", "\u33a1"], "data_1_080y118_yy_value": ["", "\u33a1", "\u33a1"], "data_i351aaba_080y015_yy_value": ["", "\uc6d0", ""], "data_i351_080y015_value": ["", "\uc6d0", "WON"], "machinery_order": ["", "\uc6d0", "WON"], "order_amount": ["", "\uc6d0", "WON"], "data_i42a_080y017_yy_value": ["", "\uc6d0", "WON"], "kr_pol_flow_res": ["", "\uba85", " people"], "kr_pol_flow_resvsttl": ["", "\ubc30", " times"], "flow_value": ["", "\uba85", " people"], "kr_pol_flow_ttl": ["", "\uba85", " people"], "kr_pol_flow_man": ["", "\uba85", " people"], "kr_pol_flow_wman": ["", "\uba85", " people"], "kr_pol_flow_10g": ["", "\uba85", " people"], "kr_pol_flow_20g": ["", "\uba85", " people"], "kr_pol_flow_30g": ["", "\uba85", " people"], "kr_pol_flow_40g": ["", "\uba85", " people"], "kr_pol_flow_50g": ["", "\uba85", " people"], "kr_pol_flow_60g": ["", "\uba85", " people"], "trd_unit_price": ["", "\ub9cc\uc6d0", ""], "rent_y_unit_price": ["", "\ub9cc\uc6d0", ""], "rent_m_unit_price": ["", "\ub9cc\uc6d0", ""], "unit_price": ["", "\ub9cc\uc6d0", ""], "trd_cnt": ["", "\uac74", ""], "emp_years": ["", "\ub144", " years"], "pay_grade": ["", "\ub9cc\uc6d0", " Won"], "deg_area_sum": ["", "\uac1c", "EA"], "degree_employ_value": ["", "%", "%"], "degree_appli_value": ["", "\uba85", " people"]},
+          builds = [], current_build,
+          mode = "";
+      if('' == 'en'){
+        mode = '';
+      }
+      //console.log("mode: ", mode);
+      for (var key in affixes) {
+        if (key in dictionary) affixes[dictionary[key]] = affixes[key];
+      }
+    </script> -->
+    
+  </head>
+  <body class="i18n profile geo">
+    
+<!--global navigation bar-->
+<div id="header">
+  <div class="gnb-sec">
+    <div class="in-wrap">
+      <h1 class="logo"><a href="/">Data Korea</a></h1>
+      <div class="search_box">
+        <button type="button" class="search_btn" onclick="KDATA.searchLayer($(this))">Search</button><!--검색레이어 호출용 검색버튼-->          
+        <!--global search area-->
+        <div class="gnb-search">
+          <div class="ele-wrap">
+              <label for="gsrch01" class="blind">검색어입력</label>
+              <!-- <input type="text" name="gsrch01" id="gsrch01" placeholder="Search"> -->
+              <input type="text" name="gsrch01" id="gsrch01" placeholder="Search" class="search-input" data-search="simple-nav" data-ga="navSearchClick" data-ga-cat="navigation" data-ga-label="Search icon clicked">
+            <!-- <button type="button" class="btn-gnb-srch"><span class="blind">검색</span></button> -->
+            <!--submit 검색버튼-->
+            <button type="button" class="btn-close-srch">cancel</button>
+          </div>
+        </div>
+        <!--//global search area-->
+      </div>
+      <div class="gnb_area">
+        <!--gnb-->
+        <ul class="gnb">
+          <li><a href="/search/">검색</a></li>
+          <li><a href="/map">지도</a></li>
+          <li><a href="/profile/geo/04000KR11/?compare=04000KR26">비교분석</a></li>
+          <li><a href="/cart">데이터활용</a></li>
+        </ul>
+        <!--//gnb-->
+        <!--gnb util-->
+        <ul class="gnb2">
+          <li class="dt_store"><a href="http://ta.kdata.or.kr:4000/dashboard" target="_blank">비정형데이터 바로가기</a></li>
+          <li class="dt_store"><a href="http://dsz.kdata.or.kr/svc/main/main.do" target="_blank">안심구역 바로가기</a></li>
+            <li class="lang_mode en"><a href="javascript:gotoEn();">EN</a></li>
+          <!-- <li class="search-toggle"><a href="#none" class="search_btn">검색</a></li> -->             
+        </ul>
+        <!--//gnb util-->
+        <div class="mb_area">
+          <img src="/static/img/main/logo.png" alt=""/>
+        </div>
+        <p class="menu-toggle"><a href="#none">모든 메뉴 열기/닫기</a>
+        </p>
+      </div>
+      <!-- //gnb_area -->
+    </div>
+  </div>
+</div>
+<!--//global navigation bar-->
+
+
+
+
+<a name="top"></a>
+<div class="bound">
+
+  <article id="splash">
+
+    <div class="content">
+
+      <div class="splash-titles">
+        <h1><span>광명시 SOC</span><span class="compare-separator">&amp;</span><span class="compare-title"></span></h1>
+      </div>
+
+      <div id="splash-stats">
+        <div id="stat-container">
+          <div class="stat">
+            <div class="stat-text"><span class='stat-span' data-url='/profile/stat/?show=geo&sort=desc&order=year&limit=5&year=all&geo=05000KR41190&where=item%3ACA00000152%2Cdt_1yl0000_value%3A%210&sumlevel=all&required=item%2Cyear%2Cdt_1yl0000_value&col=year&rank=1&dataset=False'>2020</span>년 인구</div>
+            <div class="stat-group">
+              <div class="stat-value"><span class='stat-span' data-url='/profile/stat/?show=geo&sort=desc&order=year&limit=5&year=all&geo=05000KR41190&where=item%3ACA00000152%2Cdt_1yl0000_value%3A%210&sumlevel=all&required=item%2Cyear%2Cdt_1yl0000_value&col=dt_1yl0000_value&rank=1&dataset=False'>850,329명</span></div>
+              <div class="stat-rank" data-text="0.1% 감소,> 
+                <span class='stat-span' 
+                data-url='/profile/stat/?show=geo&sort=desc&order=year&year=all&limit=5&geo=05000KR41190&where=item%3ACA00000151%2Cdt_1yl0000_value%3A%210&sumlevel=all&required=item%2Cyear%2Cdt_1yl0000_value&col=dt_1yl0000_value&rank=1&dataset=False'>-3,703명
+                </span>">
+                0.1% 감소, 
+                <span class='stat-span' data-url='/profile/stat/?show=geo&sort=desc&order=year&year=all&limit=5&geo=05000KR41190&where=item%3ACA00000151%2Cdt_1yl0000_value%3A%210&sumlevel=all&required=item%2Cyear%2Cdt_1yl0000_value&col=dt_1yl0000_value&rank=1&dataset=False'>-3,703명</span>
+              </div>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-text">도시면적</div>
+            <div class="stat-group">
+              <div class="stat-value"><span class='stat-span' data-url='/profile/stat/?show=geo&sort=desc&order=year&year=all&geo=05000KR41190&where=item%3ACA00015130%2Cdt_1yl0000_value%3A%210&limit=1&sumlevel=all&required=item%2Cyear%2Cdt_1yl0000_value&col=dt_1yl0000_value&rank=1&dataset=False'>53km²</span></div>
+              <div class="stat-rank" data-text=""></div>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="stat-text"><span class='stat-span' data-url='/profile/stat/?show=geo&sort=desc&order=year&year=all&geo=05000KR41190&where=item%3ACA00000147%2Cdt_1yl0000_value%3A%210&limit=1&sumlevel=all&required=item%2Cyear%2Cdt_1yl0000_value&col=year&rank=1&dataset=False'>2020</span>년 사회복지비 비율(광명시:부천시)</div>
+            <div class="stat-group">
+              <div class="stat-value">0.988:1</div>
+              <div class="stat-rank" data-text=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="splash-icon-nav">
+        <a href="#intro" data-ga="splash intro" data-ga-cat="navigation" data-ga-label="User click">
+          <img src="/static/img/icons/about.svg" />
+          <span data-i18n="profile:about"></span>
+        </a>
+        <a href="#건강및안전" data-ga="splash 건강 및 안전" data-ga-cat="navigation" data-ga-label="User click">
+          <img src="/static/img/icons/유동인구.svg" />
+          <span>SOC 시설현황</span>
+        </a>
+        <a href="#집과삶" data-ga="splash 집과 삶" data-ga-cat="navigation" data-ga-label="User click">
+          <img src="/static/img/icons/다양성.svg" />
+          <span>광명시와 부천시 비교</span>
+        </a>
+        <a href="#유동인구" data-ga="splash 유동인구" data-ga-cat="navigation" data-ga-label="User click">
+          <img src="/static/img/icons/건강및안전.svg" />
+          <span>정책제안</span>
+        </a>
+      </div>
+
+    </div>
+
+    <div id="scroll-btn" class="splash-icon-nav">
+      <a href="#intro" class="small" data-ga="splash more" data-ga-cat="navigation" data-ga-label="User click">
+        <img src="/static/img/icons/bottom-arrow.svg" />
+        <span data-i18n="profile:more"></span>
+      </a>
+    </div>
+
+  </article> <!-- end splash  -->
+
+  <header class="intro">
+
+    <div class="intro-head">
+      <h2 class="section-title"><a href="#intro" name="intro">요약</a></h2>
+    </div>
+
+    <div class="col">
+      <div class="intro-txt">
+      </div>
+
+      <div class="intro-viz">
+
+        <div class="breadcrumb">
+          <img src="/static/img/splash/go-to-link.svg" alt="Go to another profile." />
+          <div class="crumb-trail">
+              <a href="/#">광명시</a>
+              <a href="#">전국</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="profile-toc">
+      <div class="profile-toc-section">
+        <h2><a href="#건강및안전" data-ga="toc 건강및안전" data-ga-cat="navigation" data-ga-label="User click"><img src="/static/img/icons/유동인구.svg" />SOC 시설 현황</a></h2>
+        <ul>
+          <li><a class="pri-link" href="#category_의사_현황과_의료_기관" data-anchor="의사_현황과_의료_기관" data-ga="toc 건강및안전 topic" data-ga-cat="navigation" data-ga-label="User click">1. 광명시 현황</a></li>
+          <li><a class="pri-link" href="#category_의사_현황과_의료_기관" data-anchor="의사_현황과_의료_기관" data-ga="toc 건강및안전 topic" data-ga-cat="navigation" data-ga-label="User click">2. 시내 SOC 시설 불균형</a></li>
+        </ul>
+      </div>
+      <div class="profile-toc-section">
+        <h2><a href="#집과삶" data-ga="toc 집과삶" data-ga-cat="navigation" data-ga-label="User click"><img src="/static/img/icons/다양성.svg" /> 광명시와 부천시 비교</a></h2>
+        <ul>
+          <li><a class="pri-link" href="#category_인구" data-anchor="인구" data-ga="toc 집과삶 topic" data-ga-cat="navigation" data-ga-label="User click">1. 비교지표 선정과정</a></li>
+          <li><a class="pri-link" href="#category_집" data-anchor="집" data-ga="toc 집과삶 topic" data-ga-cat="navigation" data-ga-label="User click">2. 전반적인 현황 </a></li>
+          <li><a class="pri-link" href="#category_집" data-anchor="집" data-ga="toc 집과삶 topic" data-ga-cat="navigation" data-ga-label="User click">3. 비교</a></li>
+        </ul>
+      </div>
+      <div class="profile-toc-section">
+        <h2><a href="#유동인구" data-ga="toc 유동인구" data-ga-cat="navigation" data-ga-label="User click"><img src="/static/img/icons/건강및안전.svg" /> 정책 제안</a></h2>
+        <ul>
+          <li><a class="pri-link" href="#category_유동인구" data-anchor="유동인구" data-ga="toc 유동인구 topic" data-ga-cat="navigation" data-ga-label="User click">1. 유동인구</a></li>
+        </ul>
+      </div>
+  </div>
+
+  </header>
+
+</div>
+
+<div id="nav-bar-scroll">
+
+  <div id="profile-nav">
+    <!--상단에서 위치변경 & 내용 변경-->
+    <div id="title-bar">
+      <span>
+        <a href="/">데이터 시각화</a>
+        <a href="#">부천시(경기도)<span class="compare-separator">|</span><span class="compare-title"></span></a>
+        <a href="#" class="small compare-search" data-ga="splash compare" data-ga-cat="navigation" data-ga-label="User click">
+          <img class="compare-img" src="/static/img/icons/compare.svg" />
+        </a>
+      </span>
+    </div>
+    <ul class="pri-menu">
+      <a href="#건강및안전" data-ga="subnav 건강및안전" data-ga-cat="navigation" data-ga-label="User click"><li data-anchor="건강및안전" class="pri-link"><img src="/static/img/icons/건강및안전.svg" /><span class="profile-nav-text">건강 및 안전</span></li></a>
+      <a href="#다양성" data-ga="subnav 다양성" data-ga-cat="navigation" data-ga-label="User click"><li data-anchor="다양성" class="pri-link"><img src="/static/img/icons/다양성.svg" /><span class="profile-nav-text">다양성</span></li></a>
+      <a href="#교육" data-ga="subnav 교육" data-ga-cat="navigation" data-ga-label="User click"><li data-anchor="교육" class="pri-link"><img src="/static/img/icons/교육.svg" /><span class="profile-nav-text">교육</span></li></a>
+      <a href="#집과삶" data-ga="subnav 집과삶" data-ga-cat="navigation" data-ga-label="User click"><li data-anchor="집과삶" class="pri-link"><img src="/static/img/icons/집과삶.svg" /><span class="profile-nav-text">집과 삶</span></li></a>
+      <a href="#유동인구" data-ga="subnav 유동인구" data-ga-cat="navigation" data-ga-label="User click"><li data-anchor="유동인구" class="pri-link"><img src="/static/img/icons/유동인구.svg" /><span class="profile-nav-text">유동인구</span></li></a>
+    </ul>
+    <a href="#top" id="back-to-top">
+      <span>Back to top</span>
+      <i class="fa fa-caret-up"></i>
+    </a>
+  </div>
+</div>
+
+<div id="section-sidenav">
+  <div class="section-sidenav-group">
+    <a class="section-sidenav-button" href="#category_의사_현황과_의료_기관" data-anchor="category_의사_현황과_의료_기관" data-tooltip="의사 현황과 의료 기관" data-tooltip-arrow="false" data-tooltip-anchor="center right" data-tooltip-id="data-tooltip-sidenav" data-ga="side nav circles" data-ga-cat="navigation" data-ga-label="User click"></a>
+  </div>
+  <div class="section-sidenav-group">
+    <a class="section-sidenav-button" href="#category_외국인_정보" data-anchor="category_외국인_정보" data-tooltip="외국인 정보" data-tooltip-arrow="false" data-tooltip-anchor="center right" data-tooltip-id="data-tooltip-sidenav" data-ga="side nav circles" data-ga-cat="navigation" data-ga-label="User click"></a>
+  </div>
+  <div class="section-sidenav-group">
+    <a class="section-sidenav-button" href="#category_인구" data-anchor="category_인구" data-tooltip="인구" data-tooltip-arrow="false" data-tooltip-anchor="center right" data-tooltip-id="data-tooltip-sidenav" data-ga="side nav circles" data-ga-cat="navigation" data-ga-label="User click"></a>
+    <a class="section-sidenav-button" href="#category_집" data-anchor="category_집" data-tooltip="집" data-tooltip-arrow="false" data-tooltip-anchor="center right" data-tooltip-id="data-tooltip-sidenav" data-ga="side nav circles" data-ga-cat="navigation" data-ga-label="User click"></a>
+  </div>
+  <div class="section-sidenav-group">
+    <a class="section-sidenav-button" href="#category_유동인구" data-anchor="category_유동인구" data-tooltip="유동인구" data-tooltip-arrow="false" data-tooltip-anchor="center right" data-tooltip-id="data-tooltip-sidenav" data-ga="side nav circles" data-ga-cat="navigation" data-ga-label="User click"></a>
+  </div>
+</div>
+
+
+<header class="건강및안전 prof-body">
+  <h2 class="section-title"><a href="#건강및안전" name="건강및안전">건강 및 안전</a></h2>
+  <div class="section-ps">
+    <p></p>
+    <p><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&order=dt_1yl21001_value&sort=desc&limit=1&year=latest&sumlevel=all&required=geo%2Cyear%2Cdt_1yl21001_value&col=year&rank=1&dataset=False'>2019</span>년 기준 흡연율은 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&order=dt_1yl21001_value&sort=desc&limit=1&year=latest&sumlevel=all&required=geo%2Cyear%2Cdt_1yl21001_value&col=dt_1yl21001_value&rank=1&dataset=False'>19.9%</span>이고, <span class='term' data-tooltip-offset='0' data-tooltip-id='data-tooltip-term' data-tooltip='최근 1년 동안 한 달에 1회 이상 술을 마신 적이 있는 사람의 비율' data-default='음주율'>음주율</span>은 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&order=year&sort=desc&limit=5&chg=True&sumlevel=all&required=geo%2Cyear%2Cdt_1yl20991_value&col=dt_1yl20991_value&rank=1&dataset=False'>62.4%</span>로 조사되었습니다. 교통사고는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&where=item%3ACA00001121%2Cdt_1yl0000_value%3A%210&limit=5&order=year&sort=desc&sumlevel=all&required=geo%2Citem%2Cyear%2Cdt_1yl0000_value&col=year&rank=1&dataset=False'>2019</span>년 기준 자동차 천대 당 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&where=item%3ACA00001121%2Cdt_1yl0000_value%3A%210&limit=5&order=year&sort=desc&sumlevel=all&required=geo%2Citem%2Cyear%2Cdt_1yl0000_value&col=dt_1yl0000_value&rank=1&dataset=False'>9.8건</span>이 발생하였습니다.</p>
+  </div>
+</header>
+
+<section class="건강및안전 profile-section">
+<h1 class="category"><a href="#category_의사_현황과_의료_기관" name="category_의사_현황과_의료_기관"><img src="/static/img/icons/diversity_b.svg" height="42" width="42" /> 의사 현황과 의료 기관</a></h1>
+<article class="topic" data-slug="doctor_status" data-embed="/profile/geo/gyeonggi-do-bucheon-si/#doctor_status" data-url="http://datakorea.datastore.or.kr/profile/geo/gyeonggi-do-bucheon-si/건강및안전/doctor_status">
+  <h2 class="embed-title">
+      의료 <span class='term' data-tooltip-offset='0' data-tooltip-id='data-tooltip-term' data-tooltip='조사기준일 현재 임금, 봉급 또는 이에 준하는 보수를 받고 사업체에 고용되어 있는 피고용자, 자영업주, 무급가족종사자 등을 말함' data-default='종사자'>종사자</span> 현황
+    <div class="viz-btns">
+      <a href="#" class="viz-btn popover-btn view-table" title="View Data" data-ga="view-table" data-ga-cat="viz-button" data-ga-label="View Data" data-i18n="popup:view"></a>
+    </div>
+  </h2>
+  <div class="content">
+    <aside >
+      <div class="topic-stats">
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&year=latest&med_man=B001%2CB003%2CB004%2CB005%2CB007%2CB008&order=med_man&sort=asc&limit=5&sumlevel=all&required=year%2Cmed_man%2Cdt_11001n_a043_value%2Cper_pop_1000_value&col=dt_11001n_a043_value&rank=1&dataset=False'>11,262명</span></span></div>
+<div class="stat-text"><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&year=latest&med_man=B001%2CB003%2CB004%2CB005%2CB007%2CB008&order=med_man&sort=asc&limit=5&sumlevel=all&required=year%2Cmed_man%2Cdt_11001n_a043_value%2Cper_pop_1000_value&col=year&rank=1&dataset=False'>2017</span>년 의료 <span class='term' data-tooltip-offset='0' data-tooltip-id='data-tooltip-term' data-tooltip='조사기준일 현재 임금, 봉급 또는 이에 준하는 보수를 받고 사업체에 고용되어 있는 피고용자, 자영업주, 무급가족종사자 등을 말함' data-default='종사자'>종사자</span> 수</div>          </div>
+      </div>
+      <p><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&year=latest&med_man=B001%2CB003%2CB004%2CB005%2CB007%2CB008&order=med_man&sort=asc&limit=5&sumlevel=all&required=year%2Cmed_man%2Cdt_11001n_a043_value%2Cper_pop_1000_value&col=year&rank=1&dataset=False'>2017</span>년 기준 부천시에서 의료 <span class='term' data-tooltip-offset='0' data-tooltip-id='data-tooltip-term' data-tooltip='조사기준일 현재 임금, 봉급 또는 이에 준하는 보수를 받고 사업체에 고용되어 있는 피고용자, 자영업주, 무급가족종사자 등을 말함' data-default='종사자'>종사자</span>는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&year=latest&med_man=B001%2CB003%2CB004%2CB005%2CB007%2CB008&order=med_man&sort=asc&limit=5&sumlevel=all&required=year%2Cmed_man%2Cdt_11001n_a043_value%2Cper_pop_1000_value&col=dt_11001n_a043_value&rank=1&dataset=False'>11,262명</span> 이고, 그중 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&year=latest&med_man=B001%2CB003%2CB004%2CB005%2CB007%2CB008&order=med_man&sort=asc&limit=5&sumlevel=all&required=year%2Cmed_man%2Cdt_11001n_a043_value%2Cper_pop_1000_value&col=med_man&rank=2&dataset=False'>상근의사</span>는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&year=latest&med_man=B001%2CB003%2CB004%2CB005%2CB007%2CB008&order=med_man&sort=asc&limit=5&sumlevel=all&required=year%2Cmed_man%2Cdt_11001n_a043_value%2Cper_pop_1000_value&col=dt_11001n_a043_value&rank=2&dataset=False'>1,637명</span>, <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&year=latest&med_man=B001%2CB003%2CB004%2CB005%2CB007%2CB008&order=med_man&sort=asc&limit=5&sumlevel=all&required=year%2Cmed_man%2Cdt_11001n_a043_value%2Cper_pop_1000_value&col=med_man&rank=3&dataset=False'>비상근의사</span>는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&year=latest&med_man=B001%2CB003%2CB004%2CB005%2CB007%2CB008&order=med_man&sort=asc&limit=5&sumlevel=all&required=year%2Cmed_man%2Cdt_11001n_a043_value%2Cper_pop_1000_value&col=dt_11001n_a043_value&rank=3&dataset=False'>0명</span> , <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&year=latest&med_man=B001%2CB003%2CB004%2CB005%2CB007%2CB008&order=med_man&sort=asc&limit=5&sumlevel=all&required=year%2Cmed_man%2Cdt_11001n_a043_value%2Cper_pop_1000_value&col=med_man&rank=4&dataset=False'>치과의사</span>는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&year=latest&med_man=B001%2CB003%2CB004%2CB005%2CB007%2CB008&order=med_man&sort=asc&limit=5&sumlevel=all&required=year%2Cmed_man%2Cdt_11001n_a043_value%2Cper_pop_1000_value&col=dt_11001n_a043_value&rank=4&dataset=False'>393명</span>으로 조사되었습니다.</p>
+      <p class="definition"></p>
+      <div class="viz mini"></div>
+      <script>builds.push({"attrs": [{"type": "MedManType", "url": "http://datakorea.datastore.or.kr:5000/attrs/MedManType/"}, {"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"id": "geo", "labels": true, "type": "bar", "order": {"sort": "asc", "value": "med_man_per"}, "x": {"label": "med_man_per", "value": "med_man_per"}, "y": {"scale": "discrete", "label": "geo", "value": "geo"}, "tooltip": {"value": ["year", "med_man", "med_man_moe", "dt_11001n_a043_value", "dt_11001n_a043_value_moe", "per_pop_1000_value", "per_pop_1000_value_moe", "med_man_per", "x2_med_man_per", "med_man_per_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": {"num": "dt_11001n_a043_value", "den": "per_pop_1000_value", "value": "med_man_per"}, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=med_man%2Cdt_11001n_a043_value%2Cper_pop_1000_value&geo=04000KR41%2C01000KR%2C%2C05000KR41190&show=geo&where=med_man%3AB001&sumlevel=all&year=all&sort=desc", "params": {"required": "med_man,dt_11001n_a043_value,per_pop_1000_value", "geo": "04000KR41,01000KR,,05000KR41190", "show": "geo", "where": "med_man:B001", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": false, "slug": "doctor_status"});</script>
+<sub class="sub-source">Dataset: <span class="source"></span></sub>
+<sub class="sub-source">
+  Source: <span class="org"></span>
+</sub>
+
+    </aside>
+    <div class="viz main bar"></div>
+    <script>builds.push({"attrs": [{"type": "MedManType", "url": "http://datakorea.datastore.or.kr:5000/attrs/MedManType/"}], "cart": false, "config": {"color": "MedManType", "id": "med_man", "type": "bar", "time": "year", "legend": {"data": false}, "x": {"value": "year"}, "y": {"label": "med_man_cnt", "value": "dt_11001n_a043_value"}, "tooltip": {"value": ["year", "dt_11001n_a043_value", "dt_11001n_a043_value_moe", "year", "year_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=dt_11001n_a043_value&geo=05000KR41190&show=med_man&year=all&order=year%2Cdt_11001n_a043_value&sort=desc%2Cdesc&where=med_man%3Astr%21B001&sumlevel=all", "params": {"required": "dt_11001n_a043_value", "geo": "05000KR41190", "show": "med_man", "year": "all", "order": "year,dt_11001n_a043_value", "sort": "desc,desc", "where": "med_man:str!B001", "sumlevel": "all"}}], "highlight": false, "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": false, "slug": "doctor_status"});</script>
+  </div>
+</article>
+<article class="topic" data-slug="hospital_status" data-embed="/profile/geo/gyeonggi-do-bucheon-si/#hospital_status" data-url="http://datakorea.datastore.or.kr/profile/geo/gyeonggi-do-bucheon-si/건강및안전/hospital_status">
+  <h2 class="embed-title">
+      <a href="#hospital_status" class="topic-title" name="hospital_status" data-default="병원 및 병상 수">병원 및 병상 수</a>
+    <div class="viz-btns">
+      <a href="#" class="viz-btn popover-btn view-table" title="View Data" data-ga="view-table" data-ga-cat="viz-button" data-ga-label="View Data" data-i18n="popup:view"></a>
+    </div>
+  </h2>
+  <div class="content">
+    <aside >
+      <div class="topic-stats">
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=1&dataset=False'>1,072개</span></span></div>
+<div class="stat-text"><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=year&rank=1&dataset=False'>2017</span>년 병원 수</div>          </div>
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=2&dataset=False'>12,126개</span></span></div>
+<div class="stat-text"><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=year&rank=2&dataset=False'>2017</span>년 병상 수</div>          </div>
+      </div>
+      <p><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=year&rank=1&dataset=False'>2017</span>년 부천시의 병원 수는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=1&dataset=False'>1,072개</span>이며, 병상의 수는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=2&dataset=False'>12,126개</span>로 조사되었습니다.</p>
+      <p>그 중 종합병원의 수는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=3&dataset=False'>5개</span>이며, 병상의 수는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=4&dataset=False'>2,123개</span>로 인구 만명당 종합병원의 수는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=5&dataset=False'>0.06개</span>로 나타났습니다.</p>
+      <p>그 외로 특수병원의 수와 병상 수는 각각 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=6&dataset=False'>0개</span>, <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=7&dataset=False'>0개</span>, 요양병원은 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=8&dataset=False'>30개</span>, <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=9&dataset=False'>5,806개</span>로 조사되었습니다.</p>
+      <p>이 밖에도 보건소는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=10&dataset=False'>1개</span>, 보건지소는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=MED03%2CMED04%2CMED07%2CMED08%2CMED09%2CMED17%2CMED18%2CMED20%2CMED21%2CMED38%2CMED39&order=item&sort=asc&limit=11&year=latest&sumlevel=all&required=year%2Citem%2Cdt_11001n_a042_value%2Cper_pop_1000_value&col=dt_11001n_a042_value&rank=11&dataset=False'>0개</span>로 나타났습니다.</p>
+      <p class="definition"></p>
+      <div class="viz mini"></div>
+      <script>builds.push({"attrs": [{"type": "MedAgency", "url": "http://datakorea.datastore.or.kr:5000/attrs/MedAgency/"}, {"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"id": "geo", "type": "bar", "labels": true, "order": {"sort": "asc", "value": "dt_11001n_a042_value"}, "x": {"label": "MED04", "value": "dt_11001n_a042_value"}, "y": {"label": "geo", "scale": "discrete", "value": "geo"}, "tooltip": {"value": ["year", "item", "item_moe", "dt_11001n_a042_value", "dt_11001n_a042_value_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=item%2Cdt_11001n_a042_value&geo=%2C05000KR41190&show=geo&year=all&item=MED04&sumlevel=all&sort=desc", "params": {"required": "item,dt_11001n_a042_value", "geo": ",05000KR41190", "show": "geo", "year": "all", "item": "MED04", "sumlevel": "all", "sort": "desc"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": false, "slug": "hospital_status"});</script>
+<sub class="sub-source">Dataset: <span class="source"></span></sub>
+<sub class="sub-source">
+  Source: <span class="org"></span>
+</sub>
+
+    </aside>
+    <div class="viz main bar"></div>
+    <script>builds.push({"attrs": [{"type": "MedAgency", "url": "http://datakorea.datastore.or.kr:5000/attrs/MedAgency/"}, {"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"color": "MedAgency", "id": ["item", "geo"], "type": "bar", "legend": {"data": false}, "order": {"sort": "asc", "value": "dt_11001n_a042_value"}, "x": {"label": "MED03", "stacked": true, "value": "dt_11001n_a042_value"}, "y": {"label": "geo", "scale": "discrete", "value": "geo"}, "tooltip": {"value": ["year", "dt_11001n_a042_value", "dt_11001n_a042_value_moe", "year", "year_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=item%2Cdt_11001n_a042_value&geo=%2C05000KR41190&show=geo&order=year%2Cdt_11001n_a042_value&sort=desc%2Cdesc&item=MED07%2CMED11%2CMED14%2CMED20%2CMED23%2CMED26%2CMED29%2CMED17%2CMED32%2CMED35%2CMED37%2CMED38%2CMED39%2CMED40&sumlevel=all&year=all", "params": {"required": "item,dt_11001n_a042_value", "geo": ",05000KR41190", "show": "geo", "order": "year,dt_11001n_a042_value", "sort": "desc,desc", "item": "MED07,MED11,MED14,MED20,MED23,MED26,MED29,MED17,MED32,MED35,MED37,MED38,MED39,MED40", "sumlevel": "all", "year": "all"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": false, "slug": "hospital_status"});</script>
+  </div>
+</article>
+<article class="topic" data-slug="hospital_status_per_1000_pop" data-embed="/profile/geo/gyeonggi-do-bucheon-si/#hospital_status_per_1000_pop" data-url="http://datakorea.datastore.or.kr/profile/geo/gyeonggi-do-bucheon-si/건강및안전/hospital_status_per_1000_pop">
+  <h2 class="embed-title">
+      <a href="#hospital_status_per_1000_pop" class="topic-title" name="hospital_status_per_1000_pop" data-default="인구 천명당 병상 수">인구 천명당 병상 수</a>
+    <div class="viz-btns">
+      <a href="#" class="viz-btn popover-btn view-table" title="View Data" data-ga="view-table" data-ga-cat="viz-button" data-ga-label="View Data" data-i18n="popup:view"></a>
+    </div>
+  </h2>
+  <div class="content">
+    <aside >
+      <div class="viz mini"></div>
+      <script>builds.push({"attrs": [{"type": "MedAgency", "url": "http://datakorea.datastore.or.kr:5000/attrs/MedAgency/"}, {"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"id": "geo", "labels": true, "type": "line", "order": {"sort": "asc", "value": "year"}, "x": {"value": "year"}, "y": {"lines": [{"text": "2017\ub144 \uc804\uad6d \ud3c9\uade0(N/A)", "position": "N/A"}], "label": "MED04", "value": "dt_11001n_a042_value_med04_per"}, "tooltip": {"value": ["year", "item", "item_moe", "dt_11001n_a042_value", "dt_11001n_a042_value_moe", "per_pop_1000_value", "per_pop_1000_value_moe", "dt_11001n_a042_value_med04_per", "y2_dt_11001n_a042_value_med04_per", "dt_11001n_a042_value_med04_per_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": {"num": "dt_11001n_a042_value", "den": "per_pop_1000_value", "value": "dt_11001n_a042_value_med04_per"}, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=item%2Cdt_11001n_a042_value%2Cper_pop_1000_value&geo=04000KR41%2C01000KR%2C%2C05000KR41190&show=geo&item=MED04&sumlevel=all&year=all&sort=desc", "params": {"required": "item,dt_11001n_a042_value,per_pop_1000_value", "geo": "04000KR41,01000KR,,05000KR41190", "show": "geo", "item": "MED04", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": false, "slug": "hospital_status_per_1000_pop"});</script>
+<sub class="sub-source">Dataset: <span class="source"></span></sub>
+<sub class="sub-source">
+  Source: <span class="org"></span>
+</sub>
+
+    </aside>
+    <div class="viz main bar"></div>
+    <script>builds.push({"attrs": [{"type": "MedAgency", "url": "http://datakorea.datastore.or.kr:5000/attrs/MedAgency/"}, {"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"id": "geo", "labels": true, "order": {"sort": "asc", "value": "dt_11001n_a042_value_med04_per"}, "type": "bar", "x": {"label": "MED04", "value": "dt_11001n_a042_value_med04_per"}, "y": {"label": "geo", "scale": "discrete", "value": "geo"}, "tooltip": {"value": ["year", "item", "item_moe", "dt_11001n_a042_value", "dt_11001n_a042_value_moe", "per_pop_1000_value", "per_pop_1000_value_moe", "dt_11001n_a042_value_med04_per", "x2_dt_11001n_a042_value_med04_per", "dt_11001n_a042_value_med04_per_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": {"num": "dt_11001n_a042_value", "den": "per_pop_1000_value", "value": "dt_11001n_a042_value_med04_per"}, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=item%2Cdt_11001n_a042_value%2Cper_pop_1000_value&geo=04000KR41%2C01000KR%2C%2C05000KR41190&show=geo&item=MED04&sumlevel=all&year=all&sort=desc", "params": {"required": "item,dt_11001n_a042_value,per_pop_1000_value", "geo": "04000KR41,01000KR,,05000KR41190", "show": "geo", "item": "MED04", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": false, "slug": "hospital_status_per_1000_pop"});</script>
+  </div>
+</article>
+<article class="topic" data-slug="traffic_accident_per_thousands_cars" data-embed="/profile/geo/gyeonggi-do-bucheon-si/#traffic_accident_per_thousands_cars" data-url="http://datakorea.datastore.or.kr/profile/geo/gyeonggi-do-bucheon-si/건강및안전/traffic_accident_per_thousands_cars">
+  <h2 class="embed-title">
+      <a href="#traffic_accident_per_thousands_cars" class="topic-title" name="traffic_accident_per_thousands_cars" data-default="자동차 천 대당 교통사고 발생건수">자동차 천 대당 교통사고 발생건수</a>
+    <div class="viz-btns">
+      <a href="#" class="viz-btn popover-btn view-table" title="View Data" data-ga="view-table" data-ga-cat="viz-button" data-ga-label="View Data" data-i18n="popup:view"></a>
+    </div>
+  </h2>
+  <div class="content">
+    <aside >
+      <div class="topic-stats">
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&where=item%3ACA00001121%2Cdt_1yl0000_value%3A%210&limit=5&order=year&sort=desc&sumlevel=all&required=geo%2Citem%2Cyear%2Cdt_1yl0000_value&col=dt_1yl0000_value&rank=1&dataset=False'>9.8건</span></span></div>
+<div class="stat-text"><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&where=item%3ACA00001121%2Cdt_1yl0000_value%3A%210&limit=5&order=year&sort=desc&sumlevel=all&required=geo%2Citem%2Cyear%2Cdt_1yl0000_value&col=year&rank=1&dataset=False'>2019</span>년 부천시 자동차 천 대당 교통사고 발생건수</div>          </div>
+      </div>
+      <p><span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&where=item%3ACA00001121%2Cdt_1yl0000_value%3A%210&limit=5&order=year&sort=desc&sumlevel=all&required=geo%2Citem%2Cyear%2Cdt_1yl0000_value&col=year&rank=1&dataset=False'>2019</span>년 부천시에서는 자동차 천 대당 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&where=item%3ACA00001121%2Cdt_1yl0000_value%3A%210&limit=5&order=year&sort=desc&sumlevel=all&required=geo%2Citem%2Cyear%2Cdt_1yl0000_value&col=dt_1yl0000_value&rank=1&dataset=False'>9.8건</span>의 교통사고가 발생하였고, 전년 대비 11.4% 증가하였고, 연평균 0.6% 증가를 보이고 있습니다.</p>
+      <p class="definition"></p>
+      <div class="viz mini"></div>
+      <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}, {"type": "CityIndicator", "url": "http://datakorea.datastore.or.kr:5000/attrs/CityIndicator/"}], "cart": false, "config": {"id": "geo", "type": "line", "item": "CA00001121", "order": {"sort": "asc", "value": "year"}, "x": {"value": "year"}, "y": {"label": "CA00001121", "value": "dt_1yl0000_value"}, "tooltip": {"value": ["year", "dt_1yl0000_value", "dt_1yl0000_value_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=dt_1yl0000_value&geo=04000KR41%2C01000KR%2C%2C05000KR41190&show=geo&item=CA00001121&where=dt_1yl0000_value%3A%210&sumlevel=all&year=all&sort=desc", "params": {"required": "dt_1yl0000_value", "geo": "04000KR41,01000KR,,05000KR41190", "show": "geo", "item": "CA00001121", "where": "dt_1yl0000_value:!0", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": false, "slug": "traffic_accident_per_thousands_cars"});</script>
+<sub class="sub-source">Dataset: <span class="source"></span></sub>
+<sub class="sub-source">
+  Source: <span class="org"></span>
+</sub>
+
+    </aside>
+    <div class="viz main geo_map"></div>
+    <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}, {"type": "CityIndicator", "url": "http://datakorea.datastore.or.kr:5000/attrs/CityIndicator/"}], "cart": false, "config": {"color": {"indicator": "bad", "value": "dt_1yl0000_value"}, "id": "item", "item": "CA00001121", "type": "geo_map", "coords": "41190", "tooltip": {"value": ["year", "dt_1yl0000_value", "dt_1yl0000_value_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=item%2Cdt_1yl0000_value&geo=05000KR41190&show=geo&where=item%3ACA00001121%2Cdt_1yl0000_value%3A%210&sumlevel=all&year=all&sort=desc", "params": {"required": "item,dt_1yl0000_value", "geo": "05000KR41190", "show": "geo", "where": "item:CA00001121,dt_1yl0000_value:!0", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": false, "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": false, "slug": "traffic_accident_per_thousands_cars"});</script>
+  </div>
+</article>
+</section>
+
+<header class="집과삶 prof-body">
+  <h2 class="section-title"><a href="#집과삶" name="집과삶">집과 삶</a></h2>
+  <div class="section-ps">
+    <p>부천시는 주민등록인구수는 <span class='stat-span' data-url='/profile/stat/?show=geo&sort=desc&order=year&limit=5&year=all&geo=05000KR41190&where=item%3ACA00000152%2Cdt_1yl0000_value%3A%210&sumlevel=all&required=item%2Cyear%2Cdt_1yl0000_value&col=year&rank=1&dataset=False'>2017</span>년에 <span class='stat-span' data-url='/profile/stat/?show=geo&sort=desc&order=year&limit=5&year=all&geo=05000KR41190&where=item%3ACA00000152%2Cdt_1yl0000_value%3A%210&sumlevel=all&required=item%2Cyear%2Cdt_1yl0000_value&col=dt_1yl0000_value&rank=1&dataset=False'>850,329명</span>으로 조사되었고, 연평균 0.4% 감소했습니다. <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=CA00000149&where=dt_1yl0000_value%3A%210&order=year%2Cdt_1yl0000_value&sort=desc%2Cdesc&limit=5&sumlevel=all&required=item%2Cyear%2Cgeo%2Cdt_1yl0000_value&col=year&rank=1&dataset=False'>2019</span>년 출생아 수는 <span class='stat-span' data-url='/profile/stat/?geo=05000KR41190&show=geo&item=CA00000149&where=dt_1yl0000_value%3A%210&order=year%2Cdt_1yl0000_value&sort=desc%2Cdesc&limit=5&sumlevel=all&required=item%2Cyear%2Cgeo%2Cdt_1yl0000_value&col=dt_1yl0000_value&rank=1&dataset=False'>4,747명</span>으로 연도별 평균 8.9% 감소했습니다.</p>
+    <p></p>
+  </div>
+</header>
+
+<section class="집과삶 profile-section">
+<h1 class="category"><a href="#category_인구" name="category_인구"><img src="/static/img/icons/diversity_b.svg" height="42" width="42" /> 인구</a></h1>
+<h1 class="category"><a href="#category_집" name="category_집"><img src="/static/img/icons/diversity_b.svg" height="42" width="42" /> 집</a></h1>
+<article class="topic" data-slug="house_real_trade_apt" data-embed="/profile/geo/gyeonggi-do-bucheon-si/#house_real_trade_apt" data-url="http://datakorea.datastore.or.kr/profile/geo/gyeonggi-do-bucheon-si/집과삶/house_real_trade_apt">
+  <h2 class="embed-title">
+      <a href="#house_real_trade_apt" class="topic-title" name="house_real_trade_apt" data-default="부천시 아파트 실거래">부천시 아파트 실거래</a>
+    <div class="viz-btns">
+      <a href="#" class="viz-btn popover-btn view-table" title="View Data" data-ga="view-table" data-ga-cat="viz-button" data-ga-label="View Data" data-i18n="popup:view"></a>
+    </div>
+  </h2>
+  <div class="content">
+    <aside >
+      <select id="topic-select-2" data-param="required" data-method="color" data-default="trd_unit_price">
+        <option value="trd_unit_price" selected>매매 평단가(만원)</option>
+        <option value="rent_y_unit_price">전세 평단가(만원)</option>
+        <option value="rent_m_unit_price">월세 평단가(만원)</option>
+      </select>
+      <div class="topic-stats">
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=APT&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119011500/'>옥길동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=APT&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=trd_unit_price&rank=1&dataset=False'>1,674만원</span>)</span></div>
+<div class="stat-text"><span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=APT&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=year&rank=1&dataset=False'>2018</span>년 아파트 <span class='select-text'>평당</span>(실거래가) 최상위지역</div>          </div>
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=asc&year=latest&building_type=APT&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119012100/'>고강동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=asc&year=latest&building_type=APT&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=trd_unit_price&rank=1&dataset=False'>961만원</span>)</span></div>
+<div class="stat-text"><span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=APT&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=year&rank=1&dataset=False'>2018</span>년 아파트 <span class='select-text'>평당</span>(실거래가) 최하위지역</div>          </div>
+      </div>
+      <p><span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=APT&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=year&rank=1&dataset=False'>2018</span>년 부천시에서 아파트 <span class='select-text'>평당</span>(실거래가) 최상위지역은 <span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=APT&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119011500/'>옥길동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=APT&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=trd_unit_price&rank=1&dataset=False'>1,674만원</span>)로 나타났고, 최하위지역은 <span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=asc&year=latest&building_type=APT&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119012100/'>고강동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=asc&year=latest&building_type=APT&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=trd_unit_price&rank=1&dataset=False'>961만원</span>)로 나타났습니다.</p>
+      <p class="definition"></p>
+      <div class="viz mini"></div>
+      <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"id": "geo", "type": "line", "legend": {"data": false}, "order": {"sort": "asc", "value": "year"}, "x": {"value": "year"}, "y": {"label": "unit_price", "value": "unit_price"}, "tooltip": {"value": ["year", "unit_price"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": {"regex": "^([a-z0-9_]*)_unit_price$", "alias": "unit_price"}, "url": "http://datakorea.datastore.or.kr:5000/api/?required=trd_unit_price%2Cbuilding_type&geo=05000KR41190%2C07000KR4119011500%2C07000KR4119012100&show=geo&building_type=APT&private_area_size=A&sumlevel=all&year=all&sort=desc", "params": {"required": "trd_unit_price,building_type", "geo": "05000KR41190,07000KR4119011500,07000KR4119012100", "show": "geo", "building_type": "APT", "private_area_size": "A", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": true, "slug": "house_real_trade_apt"});</script>
+<sub class="sub-source">Dataset: <span class="source"></span></sub>
+<sub class="sub-source">
+  Source: <span class="org"></span>
+</sub>
+
+    </aside>
+    <div class="viz main geo_map"></div>
+    <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"color": "trd_unit_price", "id": "building_type", "type": "geo_map", "coords": "41190", "tooltip": {"value": ["year", "trd_unit_price", "trd_unit_price_moe", "rent_y_unit_price", "rent_y_unit_price_moe", "rent_m_unit_price", "rent_m_unit_price_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=building_type%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&group_id=05000KR41190&show=geo&building_type=APT&private_area_size=A&sumlevel=all&year=all&sort=desc", "params": {"required": "building_type,trd_unit_price,rent_y_unit_price,rent_m_unit_price", "group_id": "05000KR41190", "show": "geo", "building_type": "APT", "private_area_size": "A", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": false, "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": true, "slug": "house_real_trade_apt"});</script>
+  </div>
+</article>
+<article class="topic" data-slug="house_real_trade_alliance" data-embed="/profile/geo/gyeonggi-do-bucheon-si/#house_real_trade_alliance" data-url="http://datakorea.datastore.or.kr/profile/geo/gyeonggi-do-bucheon-si/집과삶/house_real_trade_alliance">
+  <h2 class="embed-title">
+      <a href="#house_real_trade_alliance" class="topic-title" name="house_real_trade_alliance" data-default="부천시 빌라/다세대 실거래">부천시 빌라/다세대 실거래</a>
+    <div class="viz-btns">
+      <a href="#" class="viz-btn popover-btn view-table" title="View Data" data-ga="view-table" data-ga-cat="viz-button" data-ga-label="View Data" data-i18n="popup:view"></a>
+    </div>
+  </h2>
+  <div class="content">
+    <aside >
+      <select id="topic-select-3" data-param="required" data-method="color" data-default="trd_unit_price">
+        <option value="trd_unit_price" selected>매매 평단가(만원)</option>
+        <option value="rent_y_unit_price">전세 평단가(만원)</option>
+        <option value="rent_m_unit_price">월세 평단가(만원)</option>
+      </select>
+      <div class="topic-stats">
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=ALLIANCE&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119011600/'>계수동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=ALLIANCE&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=trd_unit_price&rank=1&dataset=False'>2,125만원</span>)</span></div>
+<div class="stat-text"><span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=ALLIANCE&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=year&rank=1&dataset=False'>2018</span>년 빌라/다세대 <span class='select-text'>평당</span>(실거래가) 최상위지역</div>          </div>
+      </div>
+      <div class="viz mini"></div>
+      <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"id": "geo", "type": "line", "legend": {"data": false}, "order": {"sort": "asc", "value": "year"}, "x": {"value": "year"}, "y": {"label": "unit_price", "value": "unit_price"}, "tooltip": {"value": ["year", "unit_price"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": {"regex": "^([a-z0-9_]*)_unit_price$", "alias": "unit_price"}, "url": "http://datakorea.datastore.or.kr:5000/api/?required=trd_unit_price%2Cbuilding_type&geo=05000KR41190%2C07000KR4119011600%2C07000KR4119011500&show=geo&building_type=ALLIANCE&private_area_size=A&sumlevel=all&year=all&sort=desc", "params": {"required": "trd_unit_price,building_type", "geo": "05000KR41190,07000KR4119011600,07000KR4119011500", "show": "geo", "building_type": "ALLIANCE", "private_area_size": "A", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": true, "slug": "house_real_trade_alliance"});</script>
+<sub class="sub-source">Dataset: <span class="source"></span></sub>
+<sub class="sub-source">
+  Source: <span class="org"></span>
+</sub>
+
+    </aside>
+    <div class="viz main geo_map"></div>
+    <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"color": "trd_unit_price", "id": "building_type", "type": "geo_map", "coords": "41190", "tooltip": {"value": ["year", "trd_unit_price", "trd_unit_price_moe", "rent_y_unit_price", "rent_y_unit_price_moe", "rent_m_unit_price", "rent_m_unit_price_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=building_type%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&group_id=05000KR41190&show=geo&building_type=ALLIANCE&private_area_size=A&sumlevel=all&year=all&sort=desc", "params": {"required": "building_type,trd_unit_price,rent_y_unit_price,rent_m_unit_price", "group_id": "05000KR41190", "show": "geo", "building_type": "ALLIANCE", "private_area_size": "A", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": false, "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": true, "slug": "house_real_trade_alliance"});</script>
+  </div>
+</article>
+<article class="topic" data-slug="house_real_trade_officetel" data-embed="/profile/geo/gyeonggi-do-bucheon-si/#house_real_trade_officetel" data-url="http://datakorea.datastore.or.kr/profile/geo/gyeonggi-do-bucheon-si/집과삶/house_real_trade_officetel">
+  <h2 class="embed-title">
+      <a href="#house_real_trade_officetel" class="topic-title" name="house_real_trade_officetel" data-default="부천시 오피스텔 실거래">부천시 오피스텔 실거래</a>
+    <div class="viz-btns">
+      <a href="#" class="viz-btn popover-btn view-table" title="View Data" data-ga="view-table" data-ga-cat="viz-button" data-ga-label="View Data" data-i18n="popup:view"></a>
+    </div>
+  </h2>
+  <div class="content">
+    <aside >
+      <select id="topic-select-4" data-param="required" data-method="color" data-default="trd_unit_price">
+        <option value="trd_unit_price" selected>매매 평단가(만원)</option>
+        <option value="rent_y_unit_price">전세 평단가(만원)</option>
+        <option value="rent_m_unit_price">월세 평단가(만원)</option>
+      </select>
+      <div class="topic-stats">
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=OFFICETEL&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119011000/'>소사본동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=OFFICETEL&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=trd_unit_price&rank=1&dataset=False'>1,321만원</span>)</span></div>
+<div class="stat-text"><span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=OFFICETEL&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=year&rank=1&dataset=False'>2018</span>년 오피스텔 <span class='select-text'>평당</span>(실거래가) 최상위지역</div>          </div>
+      </div>
+      <p><span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=OFFICETEL&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=year&rank=1&dataset=False'>2018</span>년 부천시에서 오피스텔 <span class='select-text'>평당</span>(실거래가) 최상위지역은 <span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=OFFICETEL&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119011000/'>소사본동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=trd_unit_price&sort=desc&year=latest&building_type=OFFICETEL&private_area_size=A&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&col=trd_unit_price&rank=1&dataset=False'>1,321만원</span>)로 나타났습니다.</p>
+      <p class="definition"></p>
+      <div class="viz mini"></div>
+      <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"id": "geo", "type": "line", "legend": {"data": false}, "order": {"sort": "asc", "value": "year"}, "x": {"value": "year"}, "y": {"label": "unit_price", "value": "unit_price"}, "tooltip": {"value": ["year", "unit_price"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": {"regex": "^([a-z0-9_]*)_unit_price$", "alias": "unit_price"}, "url": "http://datakorea.datastore.or.kr:5000/api/?required=trd_unit_price%2Cbuilding_type&geo=05000KR41190%2C07000KR4119011000%2CN%2FA&show=geo&building_type=OFFICETEL&private_area_size=A&sumlevel=all&year=all&sort=desc", "params": {"required": "trd_unit_price,building_type", "geo": "05000KR41190,07000KR4119011000,N/A", "show": "geo", "building_type": "OFFICETEL", "private_area_size": "A", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": true, "slug": "house_real_trade_officetel"});</script>
+<sub class="sub-source">Dataset: <span class="source"></span></sub>
+<sub class="sub-source">
+  Source: <span class="org"></span>
+</sub>
+
+    </aside>
+    <div class="viz main geo_map"></div>
+    <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"color": "trd_unit_price", "id": "building_type", "type": "geo_map", "coords": "41190", "tooltip": {"value": ["year", "trd_unit_price", "trd_unit_price_moe", "rent_y_unit_price", "rent_y_unit_price_moe", "rent_m_unit_price", "rent_m_unit_price_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=building_type%2Ctrd_unit_price%2Crent_y_unit_price%2Crent_m_unit_price&group_id=05000KR41190&show=geo&building_type=OFFICETEL&private_area_size=A&sumlevel=all&year=all&sort=desc", "params": {"required": "building_type,trd_unit_price,rent_y_unit_price,rent_m_unit_price", "group_id": "05000KR41190", "show": "geo", "building_type": "OFFICETEL", "private_area_size": "A", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": false, "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": true, "slug": "house_real_trade_officetel"});</script>
+  </div>
+</article>
+</section>
+
+
+<header class="유동인구 prof-body">
+  <h2 class="section-title"><a href="#유동인구" name="유동인구">유동인구</a></h2>
+  <div class="section-ps">
+    <p><span class='stat-span' data-url='/profile/stat/?show=geo&order=year&sort=desc&month=0&limit=5&geo=05000KR41190&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman&col=year&rank=1&dataset=False'>2018</span>년 부천시의 월 평균 전체 유동인구 수는 <span class='stat-span' data-url='/profile/stat/?show=geo&order=year&sort=desc&month=0&limit=5&geo=05000KR41190&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman&col=kr_pol_flow_ttl&rank=1&dataset=False'>270만명</span> 이었고, 그 중 남성은 <span class='stat-span' data-url='/profile/stat/?show=geo&order=year&sort=desc&month=0&limit=5&geo=05000KR41190&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman&col=kr_pol_flow_man&rank=1&dataset=False'>162만명</span>이고, 여성은 <span class='stat-span' data-url='/profile/stat/?show=geo&order=year&sort=desc&month=0&limit=5&geo=05000KR41190&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman&col=kr_pol_flow_wman&rank=1&dataset=False'>107만명</span> 이었습니다.</p>
+    <p><span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=year&rank=1&dataset=False'>2018</span>년 유동인구가 많은 지역은 <span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119010900/'>상동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=kr_pol_flow_ttl&rank=1&dataset=False'>529,951명</span>), <span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=name&rank=2&dataset=False'><a href='/profile/geo/07000KR4119010800/'>중동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=kr_pol_flow_ttl&rank=2&dataset=False'>409,803명</span>),<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=name&rank=3&dataset=False'><a href='/profile/geo/07000KR4119011000/'>소사본동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=kr_pol_flow_ttl&rank=3&dataset=False'>155,814명</span>) 순으로 나타났고, 유동인구가 적은 지역은 <span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119011600/'>계수동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=kr_pol_flow_ttl&rank=1&dataset=False'>9,982명</span>), <span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=name&rank=2&dataset=False'><a href='/profile/geo/07000KR4119010600/'>소사동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=kr_pol_flow_ttl&rank=2&dataset=False'>30,489명</span>),<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=name&rank=3&dataset=False'><a href='/profile/geo/07000KR4119012200/'>대장동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=kr_pol_flow_ttl&rank=3&dataset=False'>30,857명</span>) 순으로 나타났습니다.</p>
+  </div>
+</header>
+
+<section class="유동인구 profile-section">
+<h1 class="category"><a href="#category_유동인구" name="category_유동인구"><img src="/static/img/icons/diversity_b.svg" height="42" width="42" /> 유동인구</a></h1>
+<article class="topic" data-slug="flow_age_sex_private_data" data-embed="/profile/geo/gyeonggi-do-bucheon-si/#flow_age_sex_private_data" data-url="http://datakorea.datastore.or.kr/profile/geo/gyeonggi-do-bucheon-si/유동인구/flow_age_sex_private_data">
+  <h2 class="embed-title">
+      <a href="#flow_age_sex_private_data" class="topic-title" name="flow_age_sex_private_data" data-default="부천시 유동 인구">부천시 유동 인구</a>
+  </h2>
+  <div class="content">
+    <aside >
+      <select id="topic-select-1" data-param="required" data-method="color" data-default="kr_pol_flow_ttl">
+        <option value="kr_pol_flow_ttl" selected>전체 유동인구(명)</option>
+        <option value="kr_pol_flow_man">남성 유동인구(명)</option>
+        <option value="kr_pol_flow_wman">여성 유동인구(명)</option>
+        <option value="kr_pol_flow_10g">10대 유동인구(명)</option>
+        <option value="kr_pol_flow_20g">20대 유동인구(명)</option>
+        <option value="kr_pol_flow_30g">30대 유동인구(명)</option>
+        <option value="kr_pol_flow_40g">40대 유동인구(명)</option>
+        <option value="kr_pol_flow_50g">50대 유동인구(명)</option>
+        <option value="kr_pol_flow_60g">60대 이상 유동인구(명)</option>
+      </select>
+      <div class="topic-stats">
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?show=geo&order=year&sort=desc&month=0&limit=5&geo=05000KR41190&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman&col=kr_pol_flow_ttl&rank=1&dataset=False'>270만명</span></span></div>
+<div class="stat-text">부천시 <span class='select-text'>유동인구</span> 수(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=year&rank=1&dataset=False'>2018</span>년 월 평균)</div>          </div>
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119010900/'>상동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=kr_pol_flow_ttl&rank=1&dataset=False'>529,951명</span>)</span></div>
+<div class="stat-text"><span class='select-text'>유동인구</span> 최상위 지역(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=year&rank=1&dataset=False'>2018</span>년 월 평균)</div>          </div>
+      </div>
+      <p><span class='stat-span' data-url='/profile/stat/?show=geo&order=year&sort=desc&month=0&limit=5&geo=05000KR41190&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman&col=year&rank=1&dataset=False'>2018</span>년 부천시 월 평균 <span class='select-text'>전체 유동인구</span> 수는 <span class='stat-span' data-url='/profile/stat/?show=geo&order=year&sort=desc&month=0&limit=5&geo=05000KR41190&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman&col=kr_pol_flow_ttl&rank=1&dataset=False'>270만명</span> 였습니다.</p>
+      <p>그중 가장 높은 지역은 <span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119010900/'>상동</a></span> 였으며, <span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=year&rank=1&dataset=False'>2018</span>년 월 평균 <span class='select-text'>유동인구</span> 수는 <span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=kr_pol_flow_ttl&rank=1&dataset=False'>529,951명</span> 였습니다.</p>
+      <p class="definition"></p>
+      <div class="viz mini"></div>
+      <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"id": "geo", "type": "line", "legend": {"data": false}, "order": {"sort": "asc", "value": "month"}, "x": {"value": "month"}, "y": {"label": "flow_value", "value": "flow_value"}, "tooltip": {"value": ["year", "month", "flow_value"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": {"regex": "^kr_pol_flow_([a-z0-9]*)$", "alias": "flow_value"}, "url": "http://datakorea.datastore.or.kr:5000/api/?required=kr_pol_flow_ttl%2Cmonth&geo=05000KR41190&show=geo&where=month%3A%210&sumlevel=all&year=all&sort=desc", "params": {"required": "kr_pol_flow_ttl,month", "geo": "05000KR41190", "show": "geo", "where": "month:!0", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": true, "slug": "flow_age_sex_private_data"});</script>
+<sub class="sub-source">Dataset: <span class="source"></span></sub>
+<sub class="sub-source">
+  Source: <span class="org"></span>
+</sub>
+
+    </aside>
+    <div class="viz main geo_map"></div>
+    <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"color": "kr_pol_flow_ttl", "id": "data_type", "type": "geo_map", "coords": "41190", "tooltip": {"value": ["year", "kr_pol_flow_ttl", "kr_pol_flow_ttl_moe", "kr_pol_flow_man", "kr_pol_flow_man_moe", "kr_pol_flow_wman", "kr_pol_flow_wman_moe", "kr_pol_flow_10g", "kr_pol_flow_10g_moe", "kr_pol_flow_20g", "kr_pol_flow_20g_moe", "kr_pol_flow_30g", "kr_pol_flow_30g_moe", "kr_pol_flow_40g", "kr_pol_flow_40g_moe", "kr_pol_flow_50g", "kr_pol_flow_50g_moe", "kr_pol_flow_60g", "kr_pol_flow_60g_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=data_type%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_10g%2Ckr_pol_flow_20g%2Ckr_pol_flow_30g%2Ckr_pol_flow_40g%2Ckr_pol_flow_50g%2Ckr_pol_flow_60g&group_id=05000KR41190&show=geo&month=0&sumlevel=all&year=all&sort=desc", "params": {"required": "data_type,kr_pol_flow_ttl,kr_pol_flow_man,kr_pol_flow_wman,kr_pol_flow_10g,kr_pol_flow_20g,kr_pol_flow_30g,kr_pol_flow_40g,kr_pol_flow_50g,kr_pol_flow_60g", "group_id": "05000KR41190", "show": "geo", "month": "0", "sumlevel": "all", "year": "all", "sort": "desc"}}], "highlight": false, "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": true, "slug": "flow_age_sex_private_data"});</script>
+  </div>
+</article>
+<article class="topic flex" data-slug="flow_top_bottom_private_data" data-embed="/profile/geo/gyeonggi-do-bucheon-si/#flow_top_bottom_private_data" data-url="http://datakorea.datastore.or.kr/profile/geo/gyeonggi-do-bucheon-si/유동인구/flow_top_bottom_private_data">
+  <h2 class="embed-title">
+      <a href="#flow_top_bottom_private_data" class="topic-title" name="flow_top_bottom_private_data" data-default="유동인구 상/하위 지역">유동인구 상/하위 지역</a>
+  </h2>
+  <div class="content">
+    <aside >
+      <div class="topic-stats">
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119010900/'>상동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=kr_pol_flow_ttl&rank=1&dataset=False'>529,951명</span>)</span></div>
+<div class="stat-text"><span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=year&rank=1&dataset=False'>2018</span>년 유동인구 상위지역</div>          </div>
+          <div class="stat">
+            <div class="stat-value"><span class="stat-right"><span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119011600/'>계수동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=kr_pol_flow_ttl&rank=1&dataset=False'>9,982명</span>)</span></div>
+<div class="stat-text"><span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=year&rank=1&dataset=False'>2018</span>년 유동인구 하위지역</div>          </div>
+      </div>
+      <p><span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=year&rank=1&dataset=False'>2018</span>년 부천시의 유동인구가 많은 지역은 <span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119010900/'>상동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=kr_pol_flow_ttl&rank=1&dataset=False'>529,951명</span>), <span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=name&rank=2&dataset=False'><a href='/profile/geo/07000KR4119010800/'>중동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=kr_pol_flow_ttl&rank=2&dataset=False'>409,803명</span>),<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=name&rank=3&dataset=False'><a href='/profile/geo/07000KR4119011000/'>소사본동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=desc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl%2Ckr_pol_flow_man%2Ckr_pol_flow_wman%2Ckr_pol_flow_res%2Ckr_pol_flow_resvsttl&col=kr_pol_flow_ttl&rank=3&dataset=False'>155,814명</span>) 순으로 나타났고, 유동인구가 적은 지역은 <span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=name&rank=1&dataset=False'><a href='/profile/geo/07000KR4119011600/'>계수동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=kr_pol_flow_ttl&rank=1&dataset=False'>9,982명</span>), <span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=name&rank=2&dataset=False'><a href='/profile/geo/07000KR4119010600/'>소사동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=kr_pol_flow_ttl&rank=2&dataset=False'>30,489명</span>),<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=name&rank=3&dataset=False'><a href='/profile/geo/07000KR4119012200/'>대장동</a></span>(<span class='stat-span' data-url='/profile/stat/?show=geo&order=kr_pol_flow_ttl&sort=asc&year=latest&month=0&group_id=05000KR41190&geo=&limit=100&sumlevel=all&required=geo%2Cyear%2Ckr_pol_flow_ttl&col=kr_pol_flow_ttl&rank=3&dataset=False'>30,857명</span>) 순으로 나타났습니다.</p>
+      <p class="definition"></p>
+
+    </aside>
+    <div class="viz main bar"></div>
+    <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"color": "top", "id": "geo", "order": {"sort": "asc", "value": "kr_pol_flow_ttl"}, "labels": true, "type": "bar", "x": {"label": false, "value": "kr_pol_flow_ttl"}, "y": {"label": "Most", "scale": "discrete", "value": "geo"}, "tooltip": {"value": ["year", "kr_pol_flow_ttl", "kr_pol_flow_ttl_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=geo%2Ckr_pol_flow_ttl&group_id=05000KR41190&show=geo&order=kr_pol_flow_ttl&sort=desc&limit=5&year=latest&month=0&sumlevel=all", "params": {"required": "geo,kr_pol_flow_ttl", "group_id": "05000KR41190", "show": "geo", "order": "kr_pol_flow_ttl", "sort": "desc", "limit": "5", "year": "latest", "month": "0", "sumlevel": "all"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": false, "slug": "flow_top_bottom_private_data"});</script>
+    <div class="viz main bar"></div>
+    <script>builds.push({"attrs": [{"type": "geo", "url": "http://datakorea.datastore.or.kr:5000/attrs/geo/"}], "cart": false, "config": {"color": "bottom", "id": "geo", "labels": true, "order": {"sort": "asc", "value": "kr_pol_flow_ttl"}, "type": "bar", "x": {"label": false, "value": "kr_pol_flow_ttl"}, "y": {"label": "Least", "scale": "discrete", "value": "geo"}, "tooltip": {"value": ["year", "kr_pol_flow_ttl", "kr_pol_flow_ttl_moe"]}, "depth": 0, "text": "name"}, "data": [{"join": null, "divide": null, "map": null, "merge": null, "split": null, "static": null, "share": null, "sum": null, "subtract": null, "named": null, "url": "http://datakorea.datastore.or.kr:5000/api/?required=geo%2Ckr_pol_flow_ttl&group_id=05000KR41190&show=geo&order=kr_pol_flow_ttl&sort=asc&limit=5&year=latest&month=0&sumlevel=all", "params": {"required": "geo,kr_pol_flow_ttl", "group_id": "05000KR41190", "show": "geo", "order": "kr_pol_flow_ttl", "sort": "asc", "limit": "5", "year": "latest", "month": "0", "sumlevel": "all"}}], "highlight": "05000KR41190", "profile": {"x_coord": 126.7887093754577, "kind": "loc", "level": "050", "cname": "\u5bcc\u5ddd\u5e02", "ename": "Bucheon-si", "image_author": null, "name": "\ubd80\ucc9c\uc2dc", "y_coord": 37.50426289598868, "changed_id": "41190", "display": "\ubd80\ucc9c\uc2dc", "url_name": "gyeonggi-do-bucheon-si", "image_meta": null, "image_link": null, "id": "05000KR41190"}, "profile_type": "geo", "select": false, "slug": "flow_top_bottom_private_data"});</script>
+<sub class="sub-source">Dataset: <span class="source"></span></sub>
+<sub class="sub-source">
+  Source: <span class="org"></span>
+</sub>
+  </div>
+</article>
+</section>
+
+
+
+<div class="profile-end" style="display:none">
+
+  <h2>Keep Exploring</h2>
+
+  <!-- follow up profile links -->
+  <div class="follow-up">
+
+    <div style="background: url('/search/geo/04000KR41/img/');">
+      <a href="/profile/geo/04000KR41/" class="explore-title">
+        경기도
+        <br />
+        <span class="sumlevel">시도</span>
+      </a>
+    </div>
+    <div style="background: url('/search/geo/01000KR/img/');">
+      <a href="/profile/geo/01000KR/" class="explore-title">
+        전국
+        <br />
+        <span class="sumlevel">전국</span>
+      </a>
+    </div>
+  </div>
+  <!-- end .follow-up -->
+</div>
+
+<div id="search-compare-modal" class="search-body">
+  <input id="compare-search-input" class="search-input" data-search="compare-modal" type="text" placeholder="Search" data-ga="compareSearchClick" data-ga-cat="compare" />
+  <div class="no-search-results">No results found</div>
+  <div class="search-results"></div>
+</div>
+
+<div id="compare-loading">
+  <div id="compare-loading-text"><i class="fa fa-spinner fa-spin"></i>Loading Comparison</div>
+</div>
+
+<!--footer area-->
+<div id="footer">
+  <!--footer upper-->
+  <div class="foot-upper">
+    <a href="/" class="logo">Data Korea</a>
+    <ul>
+      <li><a href="https://data.gg.go.kr/">경기데이터드림</a></li>
+      <li><a href="https://www.data.go.kr/">공공데이터포털</a></li>
+      <li><a href="http://www.gm.go.kr/pt/index.do">광명시청</a></li>
+      <li><a href="http://data.seoul.go.kr/">서울열린데이터광장</a></li>
+      <li><a href="https://www.datastore.or.kr/">데이터스토어</a></li>
+    </ul>
+  </div>
+  <!--//footer upper-->
+  <!--footer lower-->
+  <div class="foot-lower">
+    <dl class="dl01"> 
+      <dt>프로젝트명 : </dt>
+      <dd>SOC 1조</dd>
+      <dt>PM : </dt>
+      <dd>안예린</dd>
+      <dt>팀원 : </dt>
+      <dd>수, 다은, 수미, 유진</dd>
+    </dl>
+    <span class="copy">Copyright©빅데이터분석과활용 SOC 1조. All rights reserved.</span>
+  </div>
+  <!--//footer lower-->
+</div>
+<!--//footer area-->
+<script type="text/javascript">
+  function gotoEn(){
+    if(getHref().indexOf("/en/")<0){
+      return window.location.replace(window.location.origin+"/en"+window.location.pathname+window.location.search);
+    }
+  }
+  function gotoKor(){
+    if(getHref().indexOf("/en/")>=0){
+      return window.location.replace(window.location.origin + window.location.pathname.substring(3)+window.location.search);
+    }
+  }
+</script>
+
+<script>
+
+d3.selectAll("input.email-btn").on("click", function(){
+    d3.event.preventDefault();
+    dkorea_emailpop.open();
+});
+
+
+d3.select("#menu-btn").on(d3plus.client.pointer.click, function(){
+  d3.event.preventDefault();
+  d3.selectAll("#menu-btn .label").classed("close", !d3.selectAll("#menu-btn .b").classed("close"));
+  d3.selectAll("#menu-btn .b").classed("close", !d3.selectAll("#menu-btn .b").classed("close"));
+
+  d3.select("#menu").classed("open", !d3.select("#menu").classed("open"));
+
+  var body = d3.select("body");
+
+  body.classed("frozen", !d3.select("body").classed("frozen"));
+
+  if (body.classed("frozen") === true) {
+    body.append("div").attr("class", "page-mask");
+  } else {
+    d3.select(".page-mask").remove();
+  }
+
+  d3.select(".page-mask").on("click", function(){
+    d3.select(this).remove();
+    d3.selectAll("#menu-btn .b").classed("close", false);
+    d3.select("#menu").classed("open", false);
+    d3.select("body").classed("frozen", false);
+  });
+});
+
+d3.selectAll("#search-btn, #home-search-input").on("click", function(){
+
+  if (d3.event) {
+    d3.event.stopPropagation();
+  }
+
+  d3.select("#search-compare-modal").classed("open", false);
+  var _this = this === window ? d3.select("#home-search-input").node() : this;
+  var is_home = this.id === "home-search-input";
+  var results_div_id = d3.select(_this).attr("data-results");
+  var results_div = d3.select("#"+results_div_id)
+  results_div.classed("open", true);
+
+  // open search box if not home page
+  if(!d3.select("body").classed("home")){
+
+    search.data = false;
+    d3.select(".search-box").classed("open", !d3.select(".search-box").classed("open"));
+
+    // close search body if search box is closed
+    if (!d3.select(".search-box").classed("open")) {
+      d3.select(".search-body").classed("open", false);
+    }
+
+  }
+  else {
+    search.data = true;
+  }
+
+  // focus input
+  var search_input = _this.tagName.toLowerCase() === "input" ? d3.select(_this) : d3.select(_this.parentNode).select("input");
+  search_input.node().focus();
+
+  // initialize search if input box is empty
+  // console.log(search_input.property("value"))
+  search.click = false;
+  search.filterID = false;
+  search.type = "";
+  search.max = 20;
+  if(search_input.property("value") !== ""){
+    search.container = d3.select("#search-" + search_input.attr("data-search"));
+    search.term = search_input.property("value");
+    if (!is_home) search.reload();
+  }
+  else {
+    results_div.classed("open", false);
+  }
+});
+
+d3.selectAll("#nav-search-input, #compare-search-input").on("click", function(){
+  if(d3.select(this.parentNode).classed("open")){
+    d3.event.stopPropagation();
+  }
+})
+
+</script>
+
+
+
+<script>
+
+  var fontRange = [50, 65];
+  if (window.innerWidth <= 480) {
+    fontRange = [25, 45];
+  }
+
+  var fontScale = d3.scale.linear()
+    .domain([60, 20])
+    .range(fontRange)
+    .clamp(true);
+
+  var title = d3.select(".splash-titles h1");
+  title.style("font-size", fontScale(title.text().length) + "px");
+
+  // if (!d3plus.client.touch) {
+  //   var scrollTimeout = setTimeout(function(){
+  //     d3.select("#scroll-btn").classed("visible", true);
+  //   }, 5000);
+  // }
+
+  var maxCarousel = d3.selectAll(".carousel-text").size() - 1, currentPage = 0;
+  d3.selectAll(".carousel-btn").on("click", function(d, i){
+    if (i && currentPage < maxCarousel) currentPage++;
+    else if (i === 0 && currentPage > 0) currentPage--;
+
+    d3.select("#carousel-page").text(currentPage + 1);
+
+    d3.selectAll(".carousel-btn").classed("active", function(dd, ii){
+      return !ii && currentPage || ii && currentPage < maxCarousel;
+    });
+    d3.selectAll(".carousel-text").classed("active", function(dd, ii){
+      return ii === currentPage;
+    });
+  });
+
+  d3.select(".expand-stats-btn").on("click", function(){
+    d3.event.preventDefault();
+    d3.select(this).classed("close", !d3.select(this).classed("close"));
+    d3.select("#nav-bar-scroll").classed("stat-hidden", !d3.select("#nav-bar-scroll").classed("stat-hidden"));
+  });
+
+  var splashHeight = d3.select("#splash").node().offsetHeight,
+      boundHeight = d3.select(".bound").node().offsetHeight
+      titleNavHeight = d3.select("#title-bar").node().offsetHeight,
+      statNavHeight = d3.select("#stats-bar").size() ? d3.select("#stats-bar").node().offsetHeight : 0,
+      profNavHeight = d3.select("#profile-nav").node().offsetHeight,
+      attr_type = "geo";
+
+  // var firstScroll = true;
+  function navScroll(){
+
+    // if (!firstScroll) {
+    //   clearTimeout(scrollTimeout);
+    //   d3.select("#scroll-btn").classed("visible", false);
+    // }
+    // firstScroll = false;
+
+    var footerTop = d3.select(".profile-end");
+    footerTop = footerTop.size() ? footerTop.node().offsetTop : d3.select("footer").node().offsetTop;
+
+    var sideButtons = d3.selectAll(".section-sidenav-button"), sideNavBottom = 0;
+    if (sideButtons.size()) {
+      sideNavBottom = sideButtons[0][sideButtons.length - 1].offsetTop + 30;
+    }
+
+    var y = d3plus.client.scroll.y(),
+        colorTitleNav = y > titleNavHeight,
+        showTitleNav = y > splashHeight/2.75,
+        showStatNav = y > splashHeight,
+        showProfNav = y > (boundHeight - titleNavHeight - statNavHeight) &&
+                      (y + sideNavBottom) < footerTop;
+
+    var parallaxScroll = d3.scale.linear()
+      .domain([0, window.innerHeight])
+      .rangeRound([0, window.innerHeight/3.6])
+      .clamp(true);
+
+    d3.selectAll("#splash-image").style("top", parallaxScroll(y) + "px")
+
+    d3.select("#top-nav").classed("filled", colorTitleNav);
+    d3.select("nav").classed("filled", colorTitleNav);
+    d3.select("#title-bar").classed("visible", showTitleNav);
+    d3.select("#home-btn").classed("hidden", showTitleNav);
+
+    d3.select("#stats-bar").classed("visible", showProfNav);
+    d3.select(".expand-stats-btn").classed("show", showProfNav);
+    d3.select("#nav-bar-scroll").classed("visible", showProfNav);
+    d3.select("#profile-nav").classed("visible", showProfNav);
+    d3.select("#section-sidenav").classed("visible", showProfNav);
+
+    var active_section;
+    var top_buffer = titleNavHeight + profNavHeight + statNavHeight + 15;
+    d3.selectAll("header a[name]")
+      .each(function(){
+        var top = this.parentNode.parentNode.offsetTop;
+        if (top - top_buffer < y) {
+          active_section = this.name;
+        }
+      })
+    d3.selectAll("#profile-nav li")
+      .classed("active", function(){
+        return this.getAttribute("data-anchor") === active_section;
+      });
+
+    var active_sub;
+    var subs = d3.selectAll("section." + active_section + " .category a[name]");
+    if (subs.size()) {
+      subs.each(function(){
+          var top = this.parentNode.offsetTop;
+          if (top - top_buffer < y) {
+            active_sub = this.name;
+          }
+        });
+    }
+    else {
+      active_sub = active_section;
+    }
+    d3.selectAll(".section-sidenav-button")
+      .classed("active", function(){
+        return this.getAttribute("data-anchor") === active_sub;
+      })
+
+  }
+
+  navScroll();
+  scrollFunctions.push(navScroll);
+
+  d3.select("#show-bg").on("click", function(){
+    var show = d3.select("#splash-image").classed("color");
+    d3.select("#splash-image").classed("color", !show);
+    d3.select("#splash .content").classed("hide", !show);
+  });
+
+</script>
+
+
+    <!-- <a class="datakorea-link hidden" target="_blank" href="http://datakorea.datastore.or.kr/"><img src="/static/img/datakr_sm_dark.png" /></a> -->
+    <!-- Google Analytics! -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-70325841-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- All Pages -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155362135-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-155362135-1');
+    </script>
+
+    <!-- NAVER Analytics -->
+    <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+    <script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "c3adc190c3d490";
+    wcs_do();
+    </script>
+
+    <script type="text/javascript">
+
+      var compares = [],
+          init_compare = compare !== false;
+          embed = d3.select("body").classed("embed"),
+          num_builds = builds.length,
+          titles = [];
+
+      function profileEvents() {
+
+        // toggle extra items in long list
+        d3.selectAll(".show-more").on("click", function(){
+          d3.event.preventDefault();
+          var elem = d3.select(this),
+              open = elem.classed("open"),
+              text = elem.attr("data-text") || elem.text();
+          elem.attr("data-text", text);
+          if (!open) text = "";
+          d3.select(this.previousSibling).style("display", open ? "none" : "inline");
+          elem.classed("open", !open).text(text);
+        });
+
+        d3.selectAll("[data-tooltip]")
+          .on(d3plus.client.pointer.over, function(){
+            var text = d3.select(this).attr("data-tooltip");
+
+            var max_width = 300;
+
+            if (text === "cartLimit") {
+              max_width = 250;
+              if (d3.select(this).classed("active")){
+                text = i18n.t("popup:remove-data");
+                d3.select(this).text(i18n.t("popup:remove"));
+              }
+              else if (!d3.select(this).classed("disabled")){
+                text = i18n.t("popup:in-cart");
+                d3.select(this).text(i18n.t("popup:cart"));
+              }
+              else text = i18n.t("popup:out-cart-pre") + cartLimit + i18n.t("popup:out-cart-aff");
+            }
+
+            var tt_id = d3.select(this).attr("data-tooltip-id") || "data-tooltip";
+
+            d3plus.tooltip.remove(tt_id);
+
+            var size = this.getBoundingClientRect();
+
+            var offset = d3.select(this).attr("data-tooltip-offset");
+            if (offset) {
+              offset = parseFloat(offset);
+            }
+            else {
+              offset = 15;
+            }
+
+            var align = d3.select(this).attr("data-tooltip-anchor") || "top center";
+
+            if (align.split(" ")[0] === "top" || align.split(" ")[0] === "bottom") {
+              var margin = parseFloat(d3.select(this).style("margin-" + align.split(" ")[0]));
+              offset += margin;
+            }
+
+            var arrow = true;
+            if(d3.select(this).attr("data-tooltip-arrow")){
+              arrow = d3.select(this).attr("data-tooltip-arrow") === "true";
+            }
+
+            d3plus.tooltip.create({
+              "x": size.left+size.width/2 + d3plus.client.scroll.x(),
+              "y": size.top+size.height/2 + d3plus.client.scroll.y(),
+              "offset": size.height/2 + offset,
+              "arrow": arrow,
+              "description": text,
+              "width": "auto",
+              "id": tt_id,
+              "align": align,
+              "max_width": max_width
+            });
+
+          })
+          .on(d3plus.client.pointer.out,function(){
+            d3plus.tooltip.remove(d3.select(this).attr("data-tooltip-id") || "data-tooltip");
+          });
+
+      }
+
+      function addComparison(attr, back) {
+        if (!attr && !compare || (attr && !init_compare && compare === attr)) return;
+        init_compare = false;
+
+        d3.select("body").classed("frozen", true);
+        d3.select("#compare-loading").style("display", "block");
+
+        if (!back) compares.push(compare);
+
+        var name = attr ? attr.display || attr.display_name || attr.name : "";
+        var type = location.pathname.split("/")[2];
+        if(getHref().indexOf("/en/") >= 0){
+          type = location.pathname.split("/")[3];
+          name = attr? attr.ename : "";
+        }
+
+        d3.selectAll(".compare-add").remove();
+        d3.selectAll(".compare-flex").classed("compare-flex", false);
+        d3.selectAll(".compare-tall").classed("compare-tall", false);
+
+        d3.select(".splash-titles").classed("compare-flex", attr ? true : false);
+        d3.select(".splash-titles h1").selectAll("span").classed("compare-flex", attr ? true : false);
+        d3.select("#splash-stats").classed("compare-flex", attr ? true : false);
+        d3.selectAll(".compare-title").text(name);
+        d3.selectAll(".compare-separator").style("display", attr ? "inline-block" : "none");
+        d3.selectAll(".compare-img").attr("src", attr ? "/static/img/icons/compare-active.svg" : "/static/img/icons/compare.svg");
+        if(mode == "en"){
+          d3.selectAll(".compare-text").text(attr ? "Remove Comparison" : "Add Comparison");
+        }else{
+          d3.selectAll(".compare-text").text(attr ? "비교하기 제거" : "비교하기 추가");
+        }
+
+        d3.select("#splash-image").each(function() {
+          if (attr) {
+            d3.select(this).classed("compare-flex", true);
+            var clone = this.cloneNode(true);
+            d3.select(clone)
+              .classed("compare-add", true)
+              .style("background-image", "url('/static/img/thumb/" + type + "/" + attr.id + ".jpg')");
+            this.parentNode.insertBefore(clone, this.nextSibling);
+          }
+        });
+
+        d3.selectAll(".topic-title, .term").html(function() {
+          var value = d3.select(this).attr("data-default");
+          if (!value) {
+            value = d3.select(this).text();
+            d3.select(this).attr("data-default", value);
+          }
+          return value;
+        });
+
+        function update_builds(data) {
+
+          builds = builds.slice(0, num_builds);
+
+          builds.forEach(function(build) {
+
+            build.data.forEach(function(d) {
+              d.url = d.orig_url || d.url;
+            });
+            build.config.color = build.orig_color;
+
+            if (build.loaded) {
+              build.loaded = false;
+              build.container.html("");
+              build.viz.height(false).width(false);
+            }
+
+          });
+
+          if (data) {
+
+            var stats = d3.select("#stat-container").classed("compare-flex", true).node();
+            var clone = stats.cloneNode(true);
+            d3.select(clone).classed("compare-add", true)
+              .selectAll(".stat").each(function(d, i) {
+                var stat = data.splash.stats[i];
+                if (stat) {
+                  d3.select(this).select(".stat-text").html(stat.title);
+                  d3.select(this).select(".stat-value").html(stat.value);
+                  d3.select(this).select(".stat-rank").html(stat.rank || "");
+                }
+                else {
+                  d3.select(this).remove();
+                }
+              });
+            stats.parentNode.appendChild(clone);
+
+            d3.select(".intro .col").each(function() {
+
+              d3.select(this).classed("compare-flex", true);
+              var clone = this.cloneNode(true);
+              d3.select(clone).classed("compare-add", true);
+              d3.select(clone).selectAll(".intro-txt p").each(function(d, i) {
+                d3.select(this).html(data.splash.description[i]);
+              });
+
+                if (attr.id !== "01000KR") {
+                var breadcrumb = d3.select(clone).select(".breadcrumb");
+                if (!breadcrumb.size()) {
+                  b = document.createElement("div");
+                  b.classList.add("breadcrumb");
+                  photo.node().parentNode.insertBefore(b, photo.node().nextSibling),
+                  breadcrumb = d3.select(clone).select(".breadcrumb");
+                  breadcrumb.append("img")
+                    .attr("src", "/static/img/splash/go-to-link.svg")
+                    .attr("alt", "Go to another profile.")
+                  breadcrumb.append("div").attr("class", "crumb-trail");
+                }
+                breadcrumb.selectAll(".crumb-trail a").remove();
+              }
+              else {
+                d3.select(clone).select(".breadcrumb").remove();
+              }
+              d3.select(clone).select(".breadcrumb").remove();
+              d3.select(clone).select(".data-source-crumb").remove();
+
+              this.parentNode.insertBefore(clone, this.nextSibling);
+              if (data.splash.viz) {
+                data.splash.viz.container = d3.select(clone).select(".viz");
+                data.splash.viz.container.selectAll("*").remove();
+                viz.prepBuild(data.splash.viz);
+                builds = builds.concat(data.splash.viz);
+              }
+            });
+
+            var sections = data.sections.reduce(function(obj, d) {
+              d.topics = d.topics.reduce(function(obj, t) {
+                obj[t.slug] = t;
+                return obj;
+              }, {});
+              obj[d.anchor] = d;
+              return obj;
+            }, {});
+
+            var base_name = d3.select(".splash-titles").select("span").html(),
+                joiner = type === "geo" ? " in " : " for ";
+
+            d3.selectAll("section").each(function(){
+
+              var anchor = this.className.split(" ")[0];
+
+              d3.select(this).selectAll("article").each(function() {
+
+                var slug = d3.select(this).attr("data-slug");
+                var topic = sections[anchor] ? sections[anchor].topics[slug] : false;
+                if (topic && (topic.viz || topic.stat)) {
+
+                  // console.log(topic);
+
+                  var topic_name = name;
+                  if (topic.subtitle) {
+                    var sub_name = new RegExp(/<a[^>]*>([^<]*)/g).exec(topic.subtitle);
+                    if (sub_name) topic_name = sub_name[1];
+                  }
+
+                  var build = builds.filter(function(b) { return b.slug === slug; });
+                  build = build.length ? build[build.length - 1] : false;
+
+                  if (build && build.data && topic.viz && build.data.map(function(d) { return d.url; }).join("--") === topic.viz[0].data.map(function(d) { return d.url; }).join("--")) {
+                    // do nothing!
+                  }
+                  else if (build && ["bar", "line"].indexOf(build.config.type) >= 0 && topic.viz.length === 1 && type === build.config.id && (attr_type !== "university" || build.data.length === 1)) {
+
+                    build.compare = attr ? attr.id : false;
+
+                    function changeURL(d) {
+
+                      var show = new RegExp("[&|?]" + type + "=([%a-zA-Z0-9\+\-]*)").exec(d.url);
+                      if (show) d.url = d.url.replace(show[0], show[0] + "%2C" + attr.id);
+
+                      if (show && ["naics", "soc"].indexOf(type) >= 0) {
+                        var level = new RegExp("[&|?]" + type + "_level=([%a-zA-Z0-9]*)").exec(d.url);
+                        if (level) d.url = d.url.replace(level[0], level[0] + "%2C" + data.attr.level);
+                      }
+
+                    }
+
+                    build.data.forEach(changeURL);
+
+                    var stats = d3.select(this).selectAll(".stat");
+                    if (stats.size() === 1) {
+                      var clone = stats.node().cloneNode(true),
+                          stat = topic.stat[0];
+                      d3.select(clone).classed("compare-add", true);
+                      d3.select(clone).select(".stat-text").html(topic_name);
+                      d3.select(clone).select(".stat-value").html(stat.value);
+                      d3.select(clone).select(".stat-subtitle").html(stat.subtitle);
+                      stats.node().parentNode.insertBefore(clone, stats.node().nextSibling);
+                    }
+
+                    if (topic.miniviz) {
+                      var miniviz = builds[builds.indexOf(build) - 1];
+                      miniviz.compare = attr ? attr.id : false;
+                      if (miniviz.config.type === "bar" && type === miniviz.config.id) {
+                        miniviz.data.forEach(changeURL);
+                      }
+                    }
+
+                    // d3.select(this).select(".topic-title").html(function() {
+                    //   return d3.select(this).html() + joiner + base_name " and " + topic_name;
+                    // });
+
+                  }
+                  else {
+
+                    d3.select(this).classed("compare-flex", true);
+                    var clone = this.cloneNode(true);
+                    d3.select(clone).classed("compare-add", true);
+                    if (d3.select(this).selectAll(".viz.main").size() === 1 && !build.config.height) d3.select(this).selectAll(".viz.main").classed("compare-tall", true);
+
+                    d3.select(this).select("h2").select(".topic-title, .term").html(function() {
+                      return d3.select(this).html() + joiner + base_name;
+                    });
+
+                    d3.select(clone).select("h2").select(".topic-title, .term").html(function() {
+                      return d3.select(this).html() + joiner + topic_name;
+                    });
+
+                    d3.select(clone).selectAll(".sub-title").html(topic.subtitle);
+
+                    d3.select(clone).selectAll(".stat").each(function(d, i) {
+                      var div = d3.select(this), stat = topic.stat[i];
+                      if (stat) {
+                        div.select(".stat-text").html(title && title.size() ? stat.title : topic_name);
+                        div.select(".stat-subtitle").html(stat.subtitle);
+                        if (stat.subvalues) {
+                          div.selectAll(".stat-value").each(function(d, i) {
+                            d3.select(this).html("<span class='stat-text'>" + (i + 1) + ".</span> " + (i ? stat.subvalues[i - 1] : stat.value))
+                          });
+                        }
+                        else {
+                          div.select(".stat-value").html(stat.value);
+                        }
+                      }
+                      else div.remove();
+                    });
+
+                    d3.select(clone).selectAll("p").html(function(d, i) {
+                      return topic.description[i];
+                    });
+
+                    d3.select(clone).select("[id^=d3plus_drop_topic-select-]").remove();
+                    d3.select(clone).select("select").remove();
+                    if (topic.select) {
+                      var first = d3.select(clone).select("aside").select("*").node();
+                      if (first.className.indexOf("sub-title") >= 0) first = first.nextSibling;
+                      var select = document.createElement("select");
+                      d3.select(clone).select("aside").node().insertBefore(select, first);
+                      var select = d3.select(clone).select("select")
+                        .attr("data-default", topic.select.default)
+                        .attr("data-method", topic.select.method)
+                        .attr("data-param", topic.select.param)
+                        .attr("id", "topic-select-" + (builds.length + (topic.miniviz ? 1 : 0)));
+                      var options = select.selectAll("option").data(topic.select.data);
+                      options.enter().append("option")
+                        .attr("value", function(d) { return d.id; })
+                        .property("selected", function(d) { return d.id === topic.select.default; })
+                        .html(function(d) { return d.name; })
+                    }
+
+                    this.parentNode.insertBefore(clone, this.nextSibling);
+
+                    if (topic.miniviz) {
+                      topic.miniviz.container = d3.select(clone).select(".viz.mini");
+                      viz.prepBuild(topic.miniviz);
+                      topic.miniviz.compare = attr.id;
+                      builds = builds.concat(topic.miniviz);
+                    }
+
+                    if (topic.viz) {
+                      var containers = d3.select(clone).selectAll(".viz.main");
+                      if (topic.viz.length < containers.size()) {
+                        containers.classed("tall", true);
+                        containers.each(function(d, i) {
+                          if (i >= topic.viz.length) d3.select(this).remove();
+                        });
+                      }
+                      topic.viz.forEach(function(v, i) {
+                        v.container = d3.select(containers[0][i]);
+                        if (!v.container.size()) {
+                          var first = topic.viz[0].container.node();
+                          topic.viz[0].container.classed("tall", false);
+                          var container = first.cloneNode(true);
+                          first.parentNode.insertBefore(container, first.nextSibling);
+                          v.container = d3.select(container);
+                        }
+                        v.compare = attr.id;
+                        if (!v.config.height && topic.viz.length === 1) v.container.classed("compare-tall", true);
+                        if (!v.config.color) v.config.color = "compare";
+                      });
+                      topic.viz.forEach(viz.prepBuild);
+                      builds = builds.concat(topic.viz);
+                    }
+
+                  }
+
+                }
+
+              });
+
+            })
+          }
+
+          builds.forEach(viz.resizeBuild);
+          profileEvents();
+          if (document.onscroll) document.onscroll();
+
+          d3.select("body").classed("frozen", false);
+          d3.select("#compare-loading").style("display", "none");
+
+        }
+        if (attr) {
+          if( getHref().indexOf("/en") >= 0 ){
+            d3.json("/en/profile/" + type + "/" + attr.id + "/?json=True", function(error, data) { update_builds(data); });
+          }else{
+            d3.json("/profile/" + type + "/" + attr.id + "/?json=True", function(error, data) { update_builds(data); });
+          }
+        }
+        else update_builds(false);
+
+        if (!back && history.pushState) {
+          titles.push(document.title);
+          if (attr) document.title = titles[0].split(" & ")[0] + " & " + name;
+          else document.title = titles[0].split(" & ")[0];
+
+          urlPath = attr ? location.pathname + "?compare=" + encodeURIComponent(attr.url_name || attr.id) : location.pathname;
+
+          window.history.pushState({path: urlPath}, "", urlPath);
+        }
+
+        compare = attr;
+
+      }
+
+      d3.select(window).on("popstate", function() {
+        if (compares.length && !compares[compares.length - 1] === location.href.indexOf("compare=") < 0) {
+          if (titles.length) document.title = titles.pop();
+          addComparison(compares.length ? compares.pop() : false, true);
+        }
+      })
+
+      d3.selectAll(".compare-search").on("click", function() {
+
+        d3.event.preventDefault();
+        d3.event.stopPropagation();
+
+        if (compare) {
+          addComparison(false);
+          return;
+        }
+
+        var modal = d3.select("#search-compare-modal"),
+            rect = d3.select(this).node().getBoundingClientRect();
+
+        if (modal.classed("open")) {
+          modal.classed("open", false);
+          return;
+        }
+
+        var navCompare = this.parentNode.parentNode.id === "title-bar";
+
+        modal
+          .classed("open", true)
+          .style("position", navCompare ? "fixed" : "absolute")
+          .style("top", (navCompare ? 0 : window.pageYOffset) + rect.top + rect.height + 10 + "px")
+          .style("left", rect.left + rect.width / 2 - parseFloat(modal.style("width"), 10) / 2 + "px");
+
+        // focus input
+        var search_input = modal.select("input");
+        search_input.node().focus();
+
+        // initialize search if input box is empty
+        search.container = modal;
+        search.click = addComparison;
+        search.type = attr_type;
+        search.max = 20;
+        search.term = search_input.property("value");
+        search.filterID = location.pathname.split("/")[3];
+        search.data = false;
+        search.reload();
+
+      });
+
+      if (compare) addComparison(compare);
+      else profileEvents();
+      viz.loadBuilds(builds);
+
+      function updateCartTooltip(){
+
+        localforage.getItem("cart", function(error, cart) {
+
+          var offset = -5,
+              size = d3.select("#cart-btn").node().getBoundingClientRect(),
+              text = "",
+              tooltipID = "cart-tooltip";
+          d3plus.tooltip.remove(tooltipID);
+
+          if (cart.datasets.length) {
+
+            text += "<div class='headers'>";
+            text += "<div class='name'>" + cart.datasets.length + " Datasets</div>";
+            text += "<div class='remove'>Remove</div>";
+            text += "</div>";
+
+
+            text += "<div class='body'>";
+            for (var i = 0; i < cart.datasets.length; i++) {
+              var dataset = cart.datasets[i];
+              text += "<div class='dataset'>";
+              text += "<div class='name'>" + dataset.title + "</div>";
+              text += "<div class='remove' data-index='" + i + "'></div>";
+              text += "</div>";
+            }
+            text += "</div>";
+
+            text += "<div class='buttons'>";
+
+            text += "<a class='cart-btn' href='/cart'>View Data</a>";
+            text += "<div class='cart-btn cart-clear'>Clear Cart</div>";
+
+            text += "</div>";
+
+          }
+          else {
+            text += "<div class='body'>";
+            text += i18n.t("popup:put-data");
+            text += "</div>";
+          }
+
+          d3plus.tooltip.create({
+            "x": size.left+size.width/2 + d3plus.client.scroll.x() + 9,
+            "y": size.top+size.height/2 + d3plus.client.scroll.y(),
+            "offset": size.height/2 + offset,
+            "arrow": true,
+            "title": "Data Cart",
+            "html": text,
+            "width": "auto",
+            "mouseevents": d3.select("#cart-btn").node(),
+            "id": tooltipID,
+            "align": "bottom center",
+            "width": 250
+          });
+
+          d3.select("#d3plus_tooltip_id_cart-tooltip").selectAll(".remove")
+            .on("click", function() {
+              var i = parseFloat(d3.select(this).attr("data-index"));
+              var dataset = cart.datasets[i];
+
+              var index = dataset.slug ? cart.builds.indexOf(dataset.slug) : -1;
+              if (index >= 0) cart.builds.splice(index, 1);
+              cart.datasets.splice(i, 1);
+              localforage.setItem("cart", cart, function() {
+                updateCartTooltip();
+                updateCart();
+              });
+            });
+
+          d3.select("#d3plus_tooltip_id_cart-tooltip").select(".cart-clear")
+            .on("click", function() {
+              localforage.setItem("cart", null, function() {
+                updateCartTooltip();
+                updateCart();
+              });
+            });
+
+        });
+
+      }
+
+//JJBAE MODIFIED START
+      function updateCartTooltipRenew() {
+        var text = "";
+        localforage.getItem("cart", function(error, cart) {
+
+          if(cart.datasets.length > 0) {
+            d3.select(".txt01").style("display","none");
+            d3.select(".txt02").html(cart.datasets.length+" Datasets save<span>Remove</span>");
+            for(var i = 0; i < cart.datasets.length; i++) {
+              var dataset = cart.datasets[i];
+              text += "<p><span class='diminish'>" + dataset.title +"</span>";
+              text += "<button class='remove' data-index='" + i + "'>삭제</button></p>";
+              d3.select(".list").html(text);
+            }
+            d3.select(".btn_area").style("display", "block");
+          }
+          else {
+            d3.select(".txt01").style("display","block");
+            d3.select(".txt02").style("display","none");
+            d3.select(".btn_area").style("display", "none");
+            d3.select(".list").html("");
+          }
+
+          d3.select(".cart").selectAll(".remove").on("click", function() {
+              var i = parseFloat(d3.select(this).attr("data-index"));
+              var dataset = cart.datasets[i];
+
+              var index = dataset.slug ? cart.builds.indexOf(dataset.slug) : -1;
+              if (index >= 0) cart.builds.splice(index, 1);
+              cart.datasets.splice(i, 1);
+              localforage.setItem("cart", cart, function() {
+                updateCartTooltipRenew();
+                updateCart();
+              });
+          });
+          d3.select(".cart").selectAll(".clearCart").on("click", function() {
+              // cart.datasets.length = 0;
+              localforage.setItem("cart", null, function() {
+                updateCartTooltipRenew();
+                updateCart();
+                d3.select(".cart_pop_wrap").style("display","none");
+              });
+          });
+        });
+      }
+
+      d3.select("#cart-btn")
+        .on(d3plus.client.pointer.over, updateCartTooltip)
+        .on(d3plus.client.pointer.out,function(){
+          d3plus.tooltip.remove("cart-tooltip");
+        });
+//JJBAE MODIFIED END
+
+      function updateCart() {
+
+        localforage.getItem("cart", function(error, cartCache) {
+
+          if (cartCache === null) {
+            cartCache = {
+              builds: [],
+              datasets: []
+            };
+            localforage.setItem("cart", cartCache);
+          }
+
+          if (parent !== window && cartCache.datasets.length) {
+
+          }
+
+          try {
+            var doc = parent.document;
+            if (doc && doc !== document && cartCache.datasets.length && d3.select(doc.body).classed("cart")) {
+              parent.location.reload();
+            }
+          }
+          catch(e) {
+            // not accessible
+          }
+
+          d3.select("#cart-btn a")
+            .html(cartCache.datasets.length || "")
+            .classed("active", cartCache.datasets.length);
+//JJBAE MODIFIED START
+          d3.select(".alert").style("display", cartCache.datasets.length > 0 ? "" : "none").text(cartCache.datasets.length);
+//JJBAE MODIFIED END
+
+          if (d3.select("body").classed("cart")) populatePage(cartCache);
+          else {
+
+            d3.selectAll(".add-to-cart").each(function() {
+              d3.select(this)
+                .classed("active", cartCache.builds.indexOf(d3.select(this).attr("data-slug")) >= 0)
+                .classed("disabled", cartCache.builds.indexOf(d3.select(this).attr("data-slug")) < 0 && cartCache.builds.length >= cartLimit)
+                .text(i18n.t("popup:cart"))
+            });
+            d3.selectAll(".add-to-cart.active").attr('data-i18n','popup:remove').text(i18n.t("popup:remove"))
+          }
+
+        });
+
+      }
+      updateCart();
+
+      if (resizeFunctions.length || resizeInstantFunctions.length) {
+
+        var resize;
+
+        function resizeEnd() {
+          for (var i = 0; i < resizeFunctions.length; i++) {
+            resizeFunctions[i]();
+          }
+        }
+
+        window.onresize = function(){
+          for (var i = 0; i < resizeInstantFunctions.length; i++) {
+            resizeInstantFunctions[i]();
+          }
+          clearTimeout(resize);
+          resize = setTimeout(resizeEnd, 400);
+        }
+
+      }
+
+      var firstScroll = true;
+      if (scrollFunctions.length) {
+        document.onscroll = function(){
+          var wait = firstScroll ? 0 : 500;
+          for (var i = 0; i < scrollFunctions.length; i++) {
+            scrollFunctions[i](wait);
+          }
+          firstScroll = false;
+        }
+      }
+      if (document.onscroll && !compare) document.onscroll();
+    </script>
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1705281333093640',
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="/static/js/i18next.min.js" type="text/javascript"></script>
+    <script src="/static/js/translate.js"></script>
+</html>
